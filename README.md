@@ -1,5 +1,3 @@
-Testing Branch Protection
-
 # FS-App-Template
 
 ## Setup
