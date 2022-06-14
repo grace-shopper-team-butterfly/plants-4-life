@@ -12,16 +12,16 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-    User.create({ username: 'John', password: '123' }),
-    User.create({ username: 'Sophie', password: '123' }),
-    User.create({ username: 'Chris', password: '123' }),
-    User.create({ username: 'Angel', password: '123' }),
-    User.create({ username: 'Kim', password: '123' }),
-    User.create({ username: 'Tony', password: '123' }),
-    User.create({ username: 'Phil', password: '123' }),
-    User.create({ username: 'Kathy', password: '123' })
+    User.create({ username: 'Cody', password: '123', isAdmin:true, email: 'cody7312@yahoo.com' }),
+    User.create({ username: 'Murphy', password: '123', isAdmin:false, email: 'murphy1900@liret.org' }),
+    User.create({ username: 'John', password: '123', isAdmin:false, email: 'john6360@twace.org' }),
+    User.create({ username: 'Sophie', password: '123', isAdmin:false, email: 'sophie@extex.org' }),
+    User.create({ username: 'Chris', password: '123', isAdmin:false, email: 'chris6069@acrit.org' }),
+    User.create({ username: 'Angel', password: '123', isAdmin:false, email: 'angel5690@typill.biz' }),
+    User.create({ username: 'Kim', password: '123', isAdmin:true, email: 'kim2841@bauros.biz' }),
+    User.create({ username: 'Tony', password: '123', isAdmin:false, email: 'tony9910@bulaffy.com' }),
+    User.create({ username: 'Phil', password: '123', isAdmin:false, email: 'phil7721@naiker.biz' }),
+    User.create({ username: 'Kathy', password: '123' , isAdmin:false, email: 'kathy5587@gmail.com'})
   ])
 
   console.log(`seeded ${users.length} users`)
