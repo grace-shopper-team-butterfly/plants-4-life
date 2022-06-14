@@ -22,11 +22,13 @@ export class AllProducts extends React.Component {
                 <div className='allDisplay'>
                 {products.length ? products.map(product => {
                     return (
+                        <Link to={`/products/${product.id}`} key= {product.id}>
                         <div className='singleProduct' key={product.id}>
                             <h1>{product.title}</h1>
                             <img src={product.imageUrl}/>
                             <p>{product.price}</p>
                         </div>
+                        </Link>
                     )
                 }) : ''}
                 </div>
