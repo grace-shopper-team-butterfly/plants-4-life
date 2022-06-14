@@ -14,6 +14,14 @@ async function seed() {
   const users = await Promise.all([
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
+    User.create({ username: 'John', password: '123' }),
+    User.create({ username: 'Sophie', password: '123' }),
+    User.create({ username: 'Chris', password: '123' }),
+    User.create({ username: 'Angel', password: '123' }),
+    User.create({ username: 'Kim', password: '123' }),
+    User.create({ username: 'Tony', password: '123' }),
+    User.create({ username: 'Phil', password: '123' }),
+    User.create({ username: 'Kathy', password: '123' })
   ])
 
   console.log(`seeded ${users.length} users`)
@@ -99,7 +107,15 @@ async function seed() {
   return {
     users: {
       cody: users[0],
-      murphy: users[1]
+      murphy: users[1],
+      John: users[2],
+      Sophie: users[3],
+      Chris: users[4],
+      Angel: users[5],
+      Kim: users[6],
+      Tony: users[7],
+      Phil: users[8],
+      Kathy: users[9]
     }
   }
 
