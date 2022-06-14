@@ -113,9 +113,6 @@ async function seed() {
     Order.create({ userId: 5, orderDate: new Date() })
   ])
 
-  console.log(Object.keys(Book.prototype))
-  console.log(Object.keys(Order.prototype))
-  console.log(Object.keys(User.prototype))
   const [cody, murphy, John, Sophie, Chris, Angel, Kim, Phil, Kathy] = users
   const [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10] = books
   const [order1, order2, order3, order4, order5] = orders

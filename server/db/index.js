@@ -16,11 +16,6 @@ Order.belongsTo(User)
 Order.belongsToMany(Book, { through: BookOrder })
 Book.belongsToMany(Order, { through: BookOrder })
 
-// BookOrder-Book Assocation
-BookOrder.belongsTo(Book)
-Book.hasMany(BookOrder)
-
-
 module.exports = {
   db,
   models: {
