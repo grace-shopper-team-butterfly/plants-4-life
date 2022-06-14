@@ -4,8 +4,8 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
     try {
-      const users = await Book.findAll()
-      res.json(users)
+      const books = await Book.findAll()
+      res.json(books)
     } catch (err) {
       next(err)
     }
