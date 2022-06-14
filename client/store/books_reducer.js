@@ -16,15 +16,18 @@ const setProducts = (products) => ({
 
 export const fetchProducts = () => {
     return async(dispatch) => {
-        console.log('inside fetchProduct')
-        const {data: products} = await axios.get('/api/products')
-        dispatch(setProducts(products))
+        try {
+            const {data: products} = await axios.get('/api/products')
+            dispatch(setProducts(products))
+        } catch (error) {
+            next(error)
+        }
     }
 }
 
 // Reducer
 
-export default function productsReducer(state = {}, action) {
+export default function productsReducer(state = [], action) {
     switch (action.type) {
       case SET_PRODUCTS:
         return action.products

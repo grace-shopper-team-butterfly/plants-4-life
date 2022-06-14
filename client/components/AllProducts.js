@@ -16,13 +16,11 @@ export class AllProducts extends React.Component {
 
     render() {
         const products = this.props.products
-        console.log('PRODUCTS', products, this.props)
-        // if (!products[0]) return ''
         return (
             <div>
                 <h1>Books</h1>
                 <div className='allDisplay'>
-                {products[0] ? products.map(product => {
+                {products.length ? products.map(product => {
                     return (
                         <div className='singleProduct' key={product.id}>
                             <h1>{product.title}</h1>
