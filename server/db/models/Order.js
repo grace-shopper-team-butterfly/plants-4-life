@@ -9,6 +9,10 @@ const Order = db.define('order', {
   purchaseTotal: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+  isFulfilled: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
