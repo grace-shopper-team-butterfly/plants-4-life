@@ -3,6 +3,7 @@ const db = require('../db')
 
 
 const Book = db.define('book', {
+
     title: {
       type: Sequelize.STRING,
       unique: true,
@@ -25,5 +26,6 @@ const Book = db.define('book', {
     }
   }) 
 
-  module.exports = Book
+
+module.exports = Book
 
