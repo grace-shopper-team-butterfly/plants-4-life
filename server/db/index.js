@@ -5,9 +5,20 @@ const db = require('./db')
 const User = require('./models/User')
 const Book = require('./models/Book')
 const Order = require('./models/Order')
+const BookOrder = require('./models/BookOrder')
 
-//associations could go here!
+// Associations
+// User-Order Association
+User.hasMany(Order)
+Order.belongsTo(User)
 
+// Book-Order Association
+Order.belongsToMany(Book, { through: BookOrder })
+Book.belongsToMany(Order, { through: BookOrder })
+
+// BookOrder-Book Assocation
+BookOrder.belongsTo(Book)
+Book.hasMany(BookOrder)
 
 
 module.exports = {
@@ -15,6 +26,7 @@ module.exports = {
   models: {
     User,
     Book,
-    Order
+    Order,
+    BookOrder
   },
 }

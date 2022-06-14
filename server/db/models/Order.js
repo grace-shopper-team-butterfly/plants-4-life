@@ -3,12 +3,10 @@ const db = require('../db')
 
 const Order = db.define('order', {
   orderDate: {
-    type: Sequelize.DATE,
-    allowNull: false
+    type: Sequelize.DATE
   },
   purchaseTotal: {
-    type: Sequelize.INTEGER,
-    allowNull: false
+    type: Sequelize.DECIMAL(15, 6)
   },
   isFulfilled: {
     type: Sequelize.BOOLEAN,

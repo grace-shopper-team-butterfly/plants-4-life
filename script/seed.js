@@ -1,6 +1,6 @@
 'use strict'
 
-const { db, models: { User, Order, Book } } = require('../server/db')
+const { db, models: { User, Order, Book, BookOrder } } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -12,13 +12,17 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
+    User.create({ username: 'cody', password: '123', email: 'cody@gmail.com', isAdmin: true }),
+    User.create({ username: 'murphy', password: '123', email: 'murphy@gmail.com' }),
+    User.create({ username: 'John', password: '123', email: 'John@gmail.com' }),
+    User.create({ username: 'Sophie', password: '123', email: 'Sophie@gmail.com' }),
+    User.create({ username: 'Chris', password: '123', email: 'Chris@gmail.com' }),
+    User.create({ username: 'Angel', password: '123', email: 'Angel@gmail.com' }),
+    User.create({ username: 'Kim', password: '123', email: 'Kim@gmail.com' }),
+    User.create({ username: 'Tony', password: '123', email: 'Tony@gmail.com' }),
+    User.create({ username: 'Phil', password: '123', email: 'Phil@gmail.com' }),
+    User.create({ username: 'Kathy', password: '123', email: 'Kathy@gmail.com' })
   ])
-
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
-
 
   // Creating Books
   const books = await Promise.all([
@@ -96,14 +100,39 @@ async function seed() {
 
   ])
 
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    }
-  }
+  console.log(`seeded ${users.length} users`)
+  console.log(`seeded successfully`)
 
+  // Create orders
+  const orders = await Promise.all([
+    Order.create({ isFulfilled: true, orderDate: new Date() }),
+    Order.create({ userId: 1, orderDate: new Date() }),
+    Order.create({ userId: 2, orderDate: new Date() }),
+    Order.create({ userId: 3, orderDate: new Date() }),
+    Order.create({ userId: 4, orderDate: new Date() }),
+    Order.create({ userId: 5, orderDate: new Date() })
+  ])
 
+  console.log(Object.keys(Book.prototype))
+  console.log(Object.keys(Order.prototype))
+  console.log(Object.keys(User.prototype))
+  const [cody, murphy, John, Sophie, Chris, Angel, Kim, Phil, Kathy] = users
+  const [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10] = books
+  const [order1, order2, order3, order4, order5] = orders
+
+  await order1.addBook(book1, { through: { quantity: 2, subTotal: 2 * book1.price } })
+  await order1.addBook(book2, { through: { quantity: 1, subTotal: 1 * book2.price } })
+  await order2.addBook(book3, { through: { quantity: 2, subTotal: 2 * book3.price } })
+  await order3.addBook(book4, { through: { quantity: 2, subTotal: 2 * book4.price } })
+  await order4.addBook(book5, { through: { quantity: 2, subTotal: 2 * book5.price } })
+  await order4.addBook(book6, { through: { quantity: 2, subTotal: 2 * book6.price } })
+  await order5.addBook(book7, { through: { quantity: 1, subTotal: 1 * book7.price } })
+  await order5.addBook(book8, { through: { quantity: 2, subTotal: 2 * book8.price } })
+
+  const total = (book1.price * 2) + (book2.price * 1)
+  order1.purchaseTotal = total
+  await order1.update()
+  await order1.save()
 }
 
 /*
