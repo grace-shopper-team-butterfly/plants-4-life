@@ -19,8 +19,11 @@ class SingleProduct extends React.Component{
         console.log('product',this.props.product)
         if (!this.props.product) return <h1>Loading</h1>
         else {return (
-            <div>
-                hi
+            <div key={product.id}>
+                <h1>{product.title}</h1>  
+                <img src={product.imageUrl}/>   
+                <p>{product.description}</p>
+                <p>{product.price}</p>
             </div>
         )}
     } 
