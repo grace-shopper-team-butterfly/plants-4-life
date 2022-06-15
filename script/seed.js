@@ -12,16 +12,16 @@ async function seed() {
 
   // Creating Users
   const users = await Promise.all([
-    User.create({ username: 'Cody', password: '123', isAdmin:true, email: 'cody7312@yahoo.com' }),
-    User.create({ username: 'Murphy', password: '123', isAdmin:false, email: 'murphy1900@liret.org' }),
-    User.create({ username: 'John', password: '123', isAdmin:false, email: 'john6360@twace.org' }),
-    User.create({ username: 'Sophie', password: '123', isAdmin:false, email: 'sophie@extex.org' }),
-    User.create({ username: 'Chris', password: '123', isAdmin:false, email: 'chris6069@acrit.org' }),
-    User.create({ username: 'Angel', password: '123', isAdmin:false, email: 'angel5690@typill.biz' }),
-    User.create({ username: 'Kim', password: '123', isAdmin:true, email: 'kim2841@bauros.biz' }),
-    User.create({ username: 'Tony', password: '123', isAdmin:false, email: 'tony9910@bulaffy.com' }),
-    User.create({ username: 'Phil', password: '123', isAdmin:false, email: 'phil7721@naiker.biz' }),
-    User.create({ username: 'Kathy', password: '123' , isAdmin:false, email: 'kathy5587@gmail.com'})
+    User.create({ username: 'cody', password: '123', isAdmin:true, email: 'cody7312@yahoo.com' }),
+    User.create({ username: 'murphy', password: '456', isAdmin:false, email: 'murphy1900@liret.org' }),
+    User.create({ username: 'john', password: '789', isAdmin:false, email: 'john6360@twace.org' }),
+    User.create({ username: 'sophie', password: '012', isAdmin:false, email: 'sophie@extex.org' }),
+    User.create({ username: 'chris', password: '234', isAdmin:false, email: 'chris6069@acrit.org' }),
+    User.create({ username: 'angel', password: '345', isAdmin:false, email: 'angel5690@typill.biz' }),
+    User.create({ username: 'kim', password: '456', isAdmin:true, email: 'kim2841@bauros.biz' }),
+    User.create({ username: 'tony', password: '567', isAdmin:false, email: 'tony9910@bulaffy.com' }),
+    User.create({ username: 'phil', password: '678', isAdmin:false, email: 'phil7721@naiker.biz' }),
+    User.create({ username: 'kathy', password: '789' , isAdmin:false, email: 'kathy5587@gmail.com'})
   ])
 
   // Creating Books
@@ -113,7 +113,7 @@ async function seed() {
     Order.create({ userId: 5, orderDate: new Date() })
   ])
 
-  const [cody, murphy, John, Sophie, Chris, Angel, Kim, Phil, Kathy] = users
+  const [cody, murphy, john, sophie, chris, angel, kim, phil, kathy] = users
   const [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10] = books
   const [order1, order2, order3, order4, order5] = orders
 

@@ -19,3 +19,32 @@ router.get('/', async (req, res, next) => {
         next(error)
     }
 })
+
+  router.post('/', async(req, res, next) => {
+    try{
+      const book = await Book.create(req.body)
+      res.json(book)
+    }catch(err){
+      next(err)
+    }
+  })
+
+  router.put('/:id', async(req, res, next) => {
+    try{
+      const book = await Book.findByPk(req.params.id)
+      await book.update(req.body)
+      res.json(book)
+    }catch(err){
+      next(err)
+    }
+  })
+
+  router.delete('/:id', async(req, res, next) => {
+    try{
+      const book = await Book.findByPk(req.params.id)
+      await product.destory()
+      res.end()
+    }catch(err){
+      next(err)
+    }
+  })
