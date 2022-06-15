@@ -28,6 +28,20 @@ export const me = () => async dispatch => {
   }
 }
 
+// export const getAllUsers = () => async dispatch => {
+//   try{
+//     const token = window.localStorage.getItem(TOKEN)
+//     const res = await axios.get('/api/users', {
+//       headers:{
+//         authorization: token
+//       }
+//     })
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+
+
 export const authenticate = (username, password, method) => async dispatch => {
   try {
     const res = await axios.post(`/auth/${method}`, {username, password})
