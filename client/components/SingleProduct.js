@@ -16,7 +16,6 @@ class SingleProduct extends React.Component{
 
     render() {
         const {product} = this.props
-        console.log('product',this.props.product)
         if (!this.props.product) return <h1>Loading</h1>
         else {return (
             <div key={product.id}>
@@ -24,6 +23,7 @@ class SingleProduct extends React.Component{
                 <img src={product.imageUrl}/>   
                 <p>{product.description}</p>
                 <p>{product.price}</p>
+                <button>Add to cart</button>
             </div>
         )}
     } 
