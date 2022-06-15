@@ -48,6 +48,7 @@ export const addProductThunk = product => async dispatch => {
     try{
         const {data} = await axios.post('/api/products', product)
         dispatch(addProduct(data))
+        history.push('/products')
     }catch(error){
         console.log(error)
     }
@@ -56,7 +57,8 @@ export const addProductThunk = product => async dispatch => {
 export const updateProductThunk = ( product, products) => async dispatch => {
     try{
         const {data} = await axios.put(`/api/products/${product.id}`, product)
-        dispatch(setProducts(data))
+        dispatch(updateProduct(data))
+        history.push('/products')
     }catch(error){
         console.log(error)
     }
@@ -64,8 +66,9 @@ export const updateProductThunk = ( product, products) => async dispatch => {
 
 export const removeProductThunk = product => async dispatch => {
     try{
-        await axios.delete(`/api/products/${product.id}`)
+        const {data: product} = await axios.delete('/api/products')
         dispatch(removeProduct(product))
+        history.push('/products')
     }catch(error){
         console.log(error)
     }
