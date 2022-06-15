@@ -54,7 +54,7 @@ export const addProductThunk = (product, history) => async dispatch => {
     }
 }
 
-export const updateProductThunk = ( product, products, history) => async dispatch => {
+export const updateProductThunk = ( product, history) => async dispatch => {
     try{
         const {data} = await axios.put(`/api/products/${product.id}`, product)
         dispatch(updateProduct(data))
