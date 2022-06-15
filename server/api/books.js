@@ -30,10 +30,11 @@ router.post('/', async (req, res, next) => {
 })
 
 // Find user that is shopping and find the cart
-// api/books/addCart/:id
+// api/books/addCart/:id - remove verbs from path
 router.put('/addCart/:bookId', async (req, res, next) => {
   try {
-    console.log(res.body)
+    console.log(typeof (req.params.bookId * 1))
+
     // const user = User.findByToken(req.body.token)
 
     // console.log('TOKEN: ', token)
