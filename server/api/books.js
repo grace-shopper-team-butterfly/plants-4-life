@@ -35,8 +35,10 @@ router.put('/addCart/:bookId', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.body.token)
     let book = await Book.findByPk(req.params.bookId)
+
     let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false, orderDate: new Date() } })
     cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
+
     res.json(cart)
   } catch (error) {
     console.log(error)
@@ -54,12 +56,12 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const book = await Book.findByPk(req.params.id)
-    await product.destory()
-    res.end()
-  } catch (err) {
-    next(err)
-  }
-})
+  router.delete('/:id', async(req, res, next) => {
+    try{
+      const book = await Book.findByPk(req.params.id)
+      await book.destory()
+      res.send(book)
+    }catch(err){
+      next(err)
+    }
+  })
