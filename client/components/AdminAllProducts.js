@@ -29,7 +29,7 @@ export class AdminAllProducts extends React.Component {
               <div className='singleProduct' key={product.id}>
                   <h1>{product.title}</h1>
                   <img src={product.imageUrl}/>
-                  <p>{product.price}</p>
+                  <p>${product.price / 100}</p>
               </div>
               </Link>
               <button type="button" onClick={() => {this.props.removeProduct(product)}}>Delete</button>
@@ -44,7 +44,7 @@ export class AdminAllProducts extends React.Component {
 const mapState = (state) => {
   return {
     products: state.products,
-    isAdmin: state.user.admin
+    // isAdmin: state.user.admin
   }
 }
 

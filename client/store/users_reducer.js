@@ -29,7 +29,7 @@ export const fetchUsers = () => {
     return async(dispatch) => {
        
             const token = localStorage.getItem('token')
-            const {data: users} = await axios.put('/api/users', {token: token})
+            const {data: users} = await axios.get(`/api/users/${token}`)
             dispatch(setUsers(users))
         
     }

@@ -37,8 +37,7 @@ router.put('/addCart/:bookId', async (req, res, next) => {
     let book = await Book.findByPk(req.params.bookId)
 
     let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false } })
-    cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
-
+    await cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
     res.json(cart)
   } catch (error) {
     console.log(error)
