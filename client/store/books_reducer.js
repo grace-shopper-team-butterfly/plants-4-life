@@ -28,7 +28,6 @@ const updateProduct = product => ({
 const removeProduct = product => ({
     type: REMOVE_PRODUCT,
     product
-
 })
 
 // Thunk Creator
@@ -75,6 +74,7 @@ export const removeProductThunk = (product, history) => async dispatch => {
         console.log(error)
     }
 }
+
 
 // Reducer
 

@@ -8,8 +8,11 @@ import AllProducts from './components/AllProducts';
 import SingleProduct from './components/SingleProduct';
 import AllUsers from './components/AllUsers'
 import Cart from './components/Cart'
-import AdminAddBooks from './components/AdminAddBooks';
+
+import AdminAddBooks from './components/AdminAddBooks'
 import AdminAllProducts from './components/AdminAllProducts'
+import AdminUpdateBooks from './components/AdminUpdateBooks'
+
 
 /**
  * COMPONENT
@@ -26,8 +29,11 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
+            <Route path='/forms/add'component={AdminAddBooks} />
+            <Route path='/products/:id/forms/edit'component={AdminUpdateBooks} />
+            <Route path='/products/adminproducts' component={AdminAllProducts} />
             <Route path='/products/:productId(\d+)' component={SingleProduct} />
-            <Route path="/products" component={AllProducts} />
+            <Route exact path="/products" component={AllProducts} />
             <Route path="/home" component={Home} />
             <Route path='/users' component={AllUsers} />
             <Route path='/cart' component={Cart} />
