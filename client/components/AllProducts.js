@@ -26,7 +26,7 @@ export class AllProducts extends React.Component {
                         <div className='singleProduct' key={product.id}>
                             <h1>{product.title}</h1>
                             <img src={product.imageUrl}/>
-                            <p>{product.price}</p>
+                            <p>${product.price / 100}</p>
                         </div>
                         </Link>
                     )

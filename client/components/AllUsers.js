@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../store/users_reducer';
 import {Link} from 'react-router-dom';
 
+
 export class AllUsers extends React.Component {
     constructor(){
       super()
@@ -16,6 +17,7 @@ export class AllUsers extends React.Component {
 
     render() {
         const users = this.props.users
+        console.log(users, 'USER')
         return (
             <div>
                 <h1>All Users</h1>
@@ -24,9 +26,10 @@ export class AllUsers extends React.Component {
                     return (
                         <div className='singleProduct' key={user.id}>
                             <p>{user.username}</p>
+                            <p>{user.email}</p>
                         </div>
                     )
-                }) : ''}
+                }) : 'Not Authorized'}
                 </div>
             </div>
         )
