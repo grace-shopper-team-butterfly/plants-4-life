@@ -33,18 +33,11 @@ router.post('/', async (req, res, next) => {
 // api/books/addCart/:id - remove verbs from path
 router.put('/addCart/:bookId', async (req, res, next) => {
   try {
-    console.log(typeof (req.params.bookId * 1))
-
-    // const user = User.findByToken(req.body.token)
-
-    // console.log('TOKEN: ', token)
-    // console.log('USER', user)
-
-    // let cart = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false } })
-    // cart.addBook(req.params.bookId)
-    // console.log('CART: ', cart)
-    // console.log('USER: ', user)
-    // res.json(cart)
+    const user = await User.findByToken(req.body.token)
+    let book = await Book.findByPk(req.params.bookId)
+    let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false } })
+    cart.addBook(req.params.bookId * 1)
+    res.json(cart)
   } catch (error) {
     console.log(error)
     next(error)
