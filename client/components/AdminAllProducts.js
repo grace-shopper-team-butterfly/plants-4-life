@@ -43,15 +43,14 @@ export class AdminAllProducts extends React.Component {
 
 const mapState = (state) => {
   return {
-    products: state.products,
-    isAdmin: state.user.admin
+    products: state.products
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
-    removeProduct: product => dispatch(removeProductThunk(product))
+    removeProduct: (product) => dispatch(removeProductThunk(product))
   }
 }
 

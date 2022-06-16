@@ -16,6 +16,8 @@ export class AdminUpdateBooks extends React.Component {
     super(props)
     this.state = initialState
     this.id = this.props.match.params.id
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   async componentDidMount(){
