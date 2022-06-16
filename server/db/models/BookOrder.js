@@ -7,7 +7,7 @@ const BookOrder = db.define('bookOrder', {
     type: Sequelize.INTEGER
   },
   subTotal: {
-    type: Sequelize.DECIMAL(15, 6)
+    type: Sequelize.INTEGER // to pennies
   }
 })
 
