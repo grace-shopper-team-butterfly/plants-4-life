@@ -11,7 +11,7 @@ const SET_AUTH = 'SET_AUTH'
 /**
  * ACTION CREATORS
  */
-const setAuth = auth => ({type: SET_AUTH, auth})
+const setAuth = auth => ({ type: SET_AUTH, auth })
 
 /**
  * THUNK CREATORS
@@ -28,27 +28,13 @@ export const me = () => async dispatch => {
   }
 }
 
-// export const getAllUsers = () => async dispatch => {
-//   try{
-//     const token = window.localStorage.getItem(TOKEN)
-//     const res = await axios.get('/api/users', {
-//       headers:{
-//         authorization: token
-//       }
-//     })
-//   }catch(err){
-//     console.log(err)
-//   }
-// }
-
-
-export const authenticate = (username, password, method) => async dispatch => {
+export const authenticate = (username, password, method, email) => async dispatch => {
   try {
-    const res = await axios.post(`/auth/${method}`, {username, password})
+    const res = await axios.post(`/auth/${method}`, { username, password, email })
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
   } catch (authError) {
-    return dispatch(setAuth({error: authError}))
+    return dispatch(setAuth({ error: authError }))
   }
 }
 
@@ -64,7 +50,7 @@ export const logout = () => {
 /**
  * REDUCER
  */
-export default function(state = {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
       return action.auth
