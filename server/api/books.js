@@ -67,12 +67,15 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/', async (req, res, next) => {
+
+router.delete('/:id', async(req,res,next)=> {
   try {
-    const book = await Book.findByPk(req.params.id)
-    await book.destory()
-    res.send(book)
-  } catch (err) {
-    next(err)
+      const product = await Book.findByPk(req.params.id)
+      await product.destroy()
+      res.send(product)
+  } catch (error) {
+      next(error)
   }
 })
+
+

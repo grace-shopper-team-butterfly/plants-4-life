@@ -20,7 +20,6 @@ Order.prototype.calculateTotal = async function() {
   const bookPrices = books.map(book => book.price)
   // in future incorporate quantity so that it is price*quantity
   const total = bookPrices.reduce((partialSum, a) => partialSum + a, 0)
-
   this.update({
     purchaseTotal: total
   })
