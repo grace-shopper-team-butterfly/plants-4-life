@@ -30,10 +30,9 @@ router.post('/', async (req, res, next) => {
 })
 
 // Find user that is shopping and find the cart
-// api/books/addCart/:id
+// api/books/addCart/:id - remove verbs from path
 router.put('/addCart/:bookId', async (req, res, next) => {
   try {
-    
     const user = await User.findByToken(req.body.token)
     let book = await Book.findByPk(req.params.bookId)
     let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false } })

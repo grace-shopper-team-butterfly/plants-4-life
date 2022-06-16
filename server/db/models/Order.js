@@ -6,7 +6,7 @@ const Order = db.define('order', {
     type: Sequelize.DATE
   },
   purchaseTotal: {
-    type: Sequelize.DECIMAL(15, 6)
+    type: Sequelize.INTEGER // to pennies
   },
   isFulfilled: {
     type: Sequelize.BOOLEAN,
