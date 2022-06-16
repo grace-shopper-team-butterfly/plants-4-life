@@ -29,7 +29,6 @@ export const fetchCart = () => {
 
 export const addProductToCart = (product) => {
   return async (dispatch) => {
-    console.log('inside thunk')
     try {
       const token = localStorage.getItem('token')
       const { data } = await axios.put(`/api/products/addCart/${product.id}`, {token: token})

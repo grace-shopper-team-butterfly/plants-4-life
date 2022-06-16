@@ -1,6 +1,17 @@
 import axios from 'axios'
 import history from '../history'
 
+// authorization
+// const token = window.localStorage.getItem('token')
+// const apiUrl= 'http://localhost:8080'
+
+// const authAxios = axios.create({
+//     baseURL: apiUrl,
+//     headers: {
+//         Authorization: `Bearer ${token}`
+//     }
+// })
+
 // Action types
 
 const SET_USERS = 'SET_USERS'
@@ -17,7 +28,8 @@ const setUsers = (users) => ({
 export const fetchUsers = () => {
     return async(dispatch) => {
         try {
-            const {data: users} = await axios.get('/api/users')
+            const token = localStorage.getItem('token')
+            const {data: users} = await axios.put('/api/users', {token: token})
             dispatch(setUsers(users))
         } catch (error) {
             next(error)
