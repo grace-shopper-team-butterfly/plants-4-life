@@ -105,7 +105,7 @@ async function seed() {
 
   // Create orders
   const orders = await Promise.all([
-    Order.create({ isFulfilled: true, orderDate: new Date() }),
+    Order.create({ isFulfilled: true, orderDate: new Date(), userId: 1, }),
     Order.create({ userId: 1, orderDate: new Date() }),
     Order.create({ userId: 2, orderDate: new Date() }),
     Order.create({ userId: 3, orderDate: new Date() }),

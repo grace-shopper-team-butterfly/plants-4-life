@@ -6,7 +6,7 @@ const ADD_TO_CART = 'ADD_TO_CART'
 
 // Action creators
 const setOrder = (cart) => ({
-  type: SET_ORDER,
+  type: SET_CART,
   cart
 })
 
@@ -19,20 +19,21 @@ const addProduct = (cart) => ({
 export const fetchCart = () => {
   return async (dispatch) => {
     try {
-      const { data: cart } = await axios.get(`/api/orders`)
+      const token = localStorage.getItem('token')
+      const { data: cart } = await axios.get(`/api/orders/${token}`)
       dispatch(setOrder(cart))
     } catch (error) {
-      next(error)
+      console.log(error)
     }
   }
 }
 
 export const addProductToCart = (product) => {
   return async (dispatch) => {
-    console.log('inside thunk')
     try {
       const token = localStorage.getItem('token')
-      const { data } = await axios.put(`/api/products/addCart/${product.id}`, {token: token})
+      const { data } = await axios.put(`/api/products/addCart/${product.id}`, { token: token })
+
       dispatch(addProduct(data))
     } catch (error) {
       console.log(error)

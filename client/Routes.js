@@ -1,12 +1,13 @@
-import React, {Component, Fragment} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Login, Signup } from './components/AuthForm';
 import Home from './components/Home';
-import {me} from './store'
+import { me } from './store'
 import AllProducts from './components/AllProducts';
 import SingleProduct from './components/SingleProduct';
 import AllUsers from './components/AllUsers'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -17,7 +18,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const { isLoggedIn } = this.props
 
     return (
       <div>
@@ -26,16 +27,18 @@ class Routes extends Component {
             <Route path='/products/:productId(\d+)' component={SingleProduct} />
             <Route path="/products" component={AllProducts} />
             <Route path="/home" component={Home} />
-            <Route path='/users' component={AllUsers}/>
+            <Route path='/users' component={AllUsers} />
+            <Route path='/cart' component={Cart} />
             <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>
             <Route path='/products/:productId(\d+)' component={SingleProduct} />
             <Route path="/products" component={AllProducts} />
-            <Route path='/' exact component={ Login } />
+            <Route path='/' exact component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path='/cart' component={Cart} />
           </Switch>
         )}
       </div>
