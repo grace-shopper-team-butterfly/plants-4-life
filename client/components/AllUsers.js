@@ -28,7 +28,7 @@ export class AllUsers extends React.Component {
                             <p>{user.email}</p>
                         </div>
                     )
-                }) : ''}
+                }) : 'Not Authorized'}
                 </div>
             </div>
         )

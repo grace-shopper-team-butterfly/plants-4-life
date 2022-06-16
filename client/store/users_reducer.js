@@ -27,13 +27,11 @@ const setUsers = (users) => ({
 
 export const fetchUsers = () => {
     return async(dispatch) => {
-        try {
+       
             const token = localStorage.getItem('token')
             const {data: users} = await axios.put('/api/users', {token: token})
             dispatch(setUsers(users))
-        } catch (error) {
-            next(error)
-        }
+        
     }
 }
 
