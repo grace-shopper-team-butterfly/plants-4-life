@@ -61,11 +61,13 @@ export class AdminAddBooks extends React.Component {
   }
 }
 
+
 const mapState = (state) => ({
   newProduct: state.products.newProduct
 })
 
-const mapDispatch = (dispatch) => {
+
+const mapDispatch = (dispatch, {history}) => {
   return{
     addProduct: newProduct => dispatch(addProductThunk(newProduct))
   }

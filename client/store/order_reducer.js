@@ -3,6 +3,7 @@ import axios from 'axios'
 // Action types
 const SET_CART = 'SET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const MODIFY_CART = 'MODIFY_CART'
 
 // Action creators
 const setOrder = (cart) => ({
@@ -12,6 +13,11 @@ const setOrder = (cart) => ({
 
 const addProduct = (cart) => ({
   type: ADD_TO_CART,
+  cart
+})
+
+const modifyProduct = (cart) => ({
+  type: MODIFY_CART,
   cart
 })
 
@@ -33,8 +39,20 @@ export const addProductToCart = (product) => {
     try {
       const token = localStorage.getItem('token')
       const { data } = await axios.put(`/api/products/addCart/${product.id}`, { token: token })
-
       dispatch(addProduct(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const modifyProductInCart = (product, quantity) => {
+  return async (dispatch) => {
+    try {
+      console.log('here')
+      const token = localStorage.getItem('token')
+      const { data } = await axios.put(`/api/orders/modifyCart/${product.id}/${quantity}`, { token: token }) // { quantity: quantity }, { token: token }
+      dispatch(modifyProduct(data))
     } catch (error) {
       console.log(error)
     }
@@ -46,6 +64,8 @@ export default function cartReducer(state = {}, action) {
     case SET_CART:
       return action.cart
     case ADD_TO_CART:
+      return action.cart
+    case MODIFY_CART:
       return action.cart
     default:
       return state

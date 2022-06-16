@@ -17,9 +17,7 @@ class SingleProduct extends React.Component {
     }
 
     handleAddToCart(product) {
-        console.log('SINGLE PAGE: ', product)
         this.props.addProductToCart(product)
-
     }
 
     render() {
@@ -31,7 +29,7 @@ class SingleProduct extends React.Component {
                     <h1>{product.title}</h1>
                     <img src={product.imageUrl} />
                     <p>{product.description}</p>
-                    <p>{product.price}</p>
+                    <p>${product.price / 100}</p>
                     <button onClick={() => this.handleAddToCart(product)}>Add to cart</button>
                 </div>
             )
