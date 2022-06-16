@@ -17,9 +17,7 @@ class SingleProduct extends React.Component {
     }
 
     handleAddToCart(product) {
-        console.log('SINGLE PAGE: ', product)
         this.props.addProductToCart(product)
-
     }
 
     render() {

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User, Book, Order } } = require('../db')
+const { models: { User, Book, Order, BookOrder } } = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -29,15 +29,26 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// Find user that is shopping and find the cart
-// api/books/addCart/:id - remove verbs from path
+// Search for the user that is shopping and find the cart
+// PUT api/books/addCart/:id - remove verbs from path
 router.put('/addCart/:bookId', async (req, res, next) => {
   try {
     const user = await User.findByToken(req.body.token)
     let book = await Book.findByPk(req.params.bookId)
 
-    let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false } })
-    cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
+    // Finding or creating a cart (isFulfilled: false)
+    let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false }, include: [{ model: Book, as: 'books' }] })
+
+    // Adding the book to the cart
+
+    if (await cart.hasBook(book.id)) {
+      const bookOrder = await BookOrder.findOne({ where: { orderId: cart.id, bookId: book.id } })
+      let newQty = bookOrder.quantity + 1
+      await bookOrder.update({ quantity: newQty, subTotal: book.price * newQty })
+      await bookOrder.save()
+    } else {
+      cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
+    }
 
     res.json(cart)
   } catch (error) {
