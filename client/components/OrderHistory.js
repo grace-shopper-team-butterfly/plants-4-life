@@ -23,11 +23,11 @@ class OrderHistory extends React.Component {
                 <div>
                     { orders[0] ? orders.map(order => {
                         return (
-                            <div> 
+                            <div key={order.id}> 
                                 <p>Order Date: {order.orderDate.slice(0,10)}</p>
                                 {order.books.map(book => {
                                     return (
-                                        <div>
+                                        <div key={book.id}>
                                             <img src={book.imageUrl}/>
                                             <p>${book.price / 100}</p>
                                         </div>

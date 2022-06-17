@@ -47,7 +47,11 @@ export const fetchProducts = () => {
 export const addProductThunk = (product, history) => async dispatch => {
     try{
         const token = localStorage.getItem('token')
-        const {data} = await axios.post(`/api/products/`, product)
+        const {data} = await axios.post(`/api/products/`, product,   {
+            headers: {
+              authorization: token
+            }
+          })
         dispatch(addProduct(data))
         history.push('/products')
     }catch(error){
@@ -57,7 +61,12 @@ export const addProductThunk = (product, history) => async dispatch => {
 
 export const updateProductThunk = ( product, history) => async dispatch => {
     try{
-        const {data} = await axios.put(`/api/products/${product.id}`, product)
+        const {data} = await axios.put(`/api/products/${product.id}`, product, 
+        {
+          headers: {
+            authorization: token
+          }
+        })
         dispatch(updateProduct(data))
         history.push('/products/adminproducts')
     }catch(error){
@@ -67,7 +76,12 @@ export const updateProductThunk = ( product, history) => async dispatch => {
 
 export const removeProductThunk = (id, history) => {
     return async (dispatch) => {
-      const {data: deletedProduct} = await axios.delete(`/api/products/${id}`)
+      const {data: deletedProduct} = await axios.delete(`/api/products/${id}`,
+      {
+        headers: {
+          authorization: token
+        }
+      })
       dispatch(removeProduct(deletedProduct))
     history.push('/products/adminproducts')
     }
