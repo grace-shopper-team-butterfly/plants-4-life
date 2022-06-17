@@ -20,7 +20,7 @@ export class AdminAllProducts extends React.Component {
       <div className='allDisplay'>
       {products.map(product => (
           <div key={product.id}>
-              <Link to={`/products/${product.id}`} key= {product.id}>
+              <Link to={`/products/${product.id}/forms/edit`} key= {product.id}>
               <div className='singleProduct' key={product.id}>
                   <h1>{product.title}</h1>
                   <img src={product.imageUrl}/>

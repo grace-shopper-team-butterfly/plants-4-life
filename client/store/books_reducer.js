@@ -59,7 +59,7 @@ export const updateProductThunk = ( product, history) => async dispatch => {
     try{
         const {data} = await axios.put(`/api/products/${product.id}`, product)
         dispatch(updateProduct(data))
-        history.push('/products')
+        history.push('/products/adminproducts')
     }catch(error){
         console.log(error)
     }
