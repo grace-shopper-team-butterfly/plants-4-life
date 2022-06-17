@@ -16,7 +16,7 @@ export const Home = props => {
       <Link to='/products/adminproducts' ><button>Edit Products</button></Link>
       <Link to='/forms/add'><button>Add Product</button> </Link>
     </div>:
-    <Link><button>View Order History</button></Link>
+    <Link to='/orderHistory' ><button>View Order History</button></Link>
   }
     </div>
   )

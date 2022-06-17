@@ -1,16 +1,23 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {authenticate} from '../store'
+import { connect } from 'react-redux'
+import { authenticate } from '../store'
 
 /**
  * COMPONENT
  */
 const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
 
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
+        {props.name === 'signup' ? <div>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
+        </div> : ''}
+
         <div>
           <label htmlFor="username">
             <small>Username</small>
@@ -55,7 +62,7 @@ const mapSignup = state => {
   }
 }
 
-const mapDispatch = dispatch => {
+const mapLoginDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -67,5 +74,18 @@ const mapDispatch = dispatch => {
   }
 }
 
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+const mapSignupDispatch = dispatch => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const username = evt.target.username.value
+      const password = evt.target.password.value
+      const email = null || evt.target.email.value
+      dispatch(authenticate(username, password, formName, email))
+    }
+  }
+}
+
+export const Login = connect(mapLogin, mapLoginDispatch)(AuthForm)
+export const Signup = connect(mapSignup, mapSignupDispatch)(AuthForm)
