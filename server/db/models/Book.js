@@ -19,7 +19,8 @@ const Book = db.define('book', {
   },
   price: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    min: 100
   },
   description: {
     type: Sequelize.TEXT
