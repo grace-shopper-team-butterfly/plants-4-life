@@ -47,6 +47,7 @@ class Cart extends React.Component {
                     <input type="number" value={quantity} name="quantity" onChange={handleChange} min="0" />
                     <button onClick={() => this.props.modifyProductInCart(book, quantity)}>Update Cart</button>
                   </form>
+                  <button>Checkout</button>
                 </div>
               </div>
 
