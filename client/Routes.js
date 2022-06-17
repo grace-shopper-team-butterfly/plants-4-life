@@ -12,6 +12,7 @@ import Cart from './components/Cart'
 import AdminAddBooks from './components/AdminAddBooks'
 import AdminAllProducts from './components/AdminAllProducts'
 import AdminUpdateBooks from './components/AdminUpdateBooks'
+import OrderHistory from './components/OrderHistory';
 
 
 /**
@@ -34,6 +35,7 @@ class Routes extends Component {
             <Route path='/products/adminproducts' component={AdminAllProducts} />
             <Route path='/products/:productId(\d+)' component={SingleProduct} />
             <Route exact path="/products" component={AllProducts} />
+            <Route exact path='/orderHistory' component={OrderHistory}/>
             <Route path="/home" component={Home} />
             <Route path='/users' component={AllUsers} />
             <Route path='/cart' component={Cart} />

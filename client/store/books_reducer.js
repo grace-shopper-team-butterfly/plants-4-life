@@ -28,6 +28,7 @@ const updateProduct = product => ({
 const removeProduct = product => ({
     type: REMOVE_PRODUCT,
     product
+
 })
 
 // Thunk Creator
@@ -58,22 +59,19 @@ export const updateProductThunk = ( product, history) => async dispatch => {
     try{
         const {data} = await axios.put(`/api/products/${product.id}`, product)
         dispatch(updateProduct(data))
-        history.push('/products')
+        history.push('/products/adminproducts')
     }catch(error){
         console.log(error)
     }
 }
 
-export const removeProductThunk = (product, history) => async dispatch => {
-    try{
-        const {data: product} = await axios.delete(`/api/products/${product.id}`)
-        console.log(product)
-        dispatch(removeProduct(product))
-        history.push('/products')
-    }catch(error){
-        console.log(error)
+export const removeProductThunk = (id, history) => {
+    return async (dispatch) => {
+      const {data: deletedProduct} = await axios.delete(`/api/products/${id}`)
+      dispatch(removeProduct(deletedProduct))
+    history.push('/products/adminproducts')
     }
-}
+  }
 
 
 // Reducer

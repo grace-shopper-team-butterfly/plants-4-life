@@ -6,6 +6,7 @@ import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/mater
 import MenuIcon from '@mui/icons-material/Menu';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
+
   <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static">
       <Toolbar>
@@ -21,6 +22,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Story Time
         </Typography>
+
         <div>
           {isLoggedIn ? (
             <div>
