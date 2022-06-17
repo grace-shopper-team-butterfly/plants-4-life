@@ -2,7 +2,6 @@ const router = require('express').Router()
 const { models: { User, Book, Order, BookOrder } } = require('../db')
 module.exports = router
 
-
 // Search for the user that is shopping and find the cart
 // PUT api/orders/remCart/:id - remove verbs from path
 router.put('/modifyCart/:id/:quantity', async (req, res, next) => {
