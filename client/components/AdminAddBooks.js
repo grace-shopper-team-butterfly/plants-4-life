@@ -69,7 +69,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch, {history}) => {
   return{
-    addProduct: newProduct => dispatch(addProductThunk(newProduct))
+    addProduct: newProduct => dispatch(addProductThunk(newProduct, history))
   }
 }
 
