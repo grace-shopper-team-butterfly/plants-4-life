@@ -1,22 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
-
+import { Link } from 'react-router-dom'
 
 /**
  * COMPONENT
  */
 export const Home = props => {
   const {username, isAdmin} = props
-  console.log(username, isAdmin)
   return (
     <div>
       <h3>Welcome, {username}</h3>
       {isAdmin ? <div>
-      <button>Users List</button>
-    <button>Edit Products</button>
-    <button>Add Product</button> 
+        <h2>Admin's Page</h2>
+      <Link to='/users' ><button>Users List</button></Link>
+      <Link to='/products/adminproducts' ><button>Edit Products</button></Link>
+      <Link to='/forms/add'><button>Add Product</button> </Link>
     </div>:
-    <button>View Order History</button>
+    <Link to='/orderHistory' ><button>View Order History</button></Link>
   }
     </div>
   )

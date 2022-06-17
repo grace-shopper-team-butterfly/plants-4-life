@@ -49,3 +49,23 @@ router.get('/:token', async (req, res, next) => {
   }
 })
 
+// GET: api/orderHistory => to get user's order history of fullfilled orders
+router.get('/orderHistory/:token', async (req, res, next) => {
+  try {
+  
+    const user = await User.findByToken(req.params.token)
+    const orderHistory = await Order.findAll({
+      where: {
+        userId: user.id,
+        isFulfilled: true
+      },
+      include: [{
+        model: Book
+      }]
+    })
+    res.json(orderHistory)
+  } catch (err) {
+    next(err)
+  }
+})
+
