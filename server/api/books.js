@@ -78,9 +78,9 @@ router.delete('/:id', async(req,res,next)=> {
   try {
     const user =  await User.findByToken(req.headers.authorization)
     if (user.isAdmin){
-      const product = await Book.findByPk(req.params.id)
-      await product.destroy()
-      res.send(product)
+      const book = await Book.findByPk(req.params.id)
+      await book.destroy()
+      res.send(book)
     }
   } catch (error) {
       next(error)

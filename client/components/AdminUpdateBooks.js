@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import { fetchOneProduct } from "../store/singleBook_reducer";
 import { updateProductThunk } from "../store/books_reducer";
+import { Button } from "@mui/material";
 
 const initialState = {
   title: '',
@@ -59,7 +60,7 @@ export class AdminUpdateBooks extends React.Component {
           <input onChange={this.handleChange} name="price" value={price} />
           <label htmlFor="discription">Description: </label>
           <textarea onChange={this.handleChange} name="discription" value={discription} />
-          <button type="submit">Submit</button>
+          <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
         </form>
       </div>
