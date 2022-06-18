@@ -18,6 +18,7 @@ const Order = db.define('order', {
 Order.prototype.calculateTotal = async function() {
   const books = await this.getBooks()
   const bookPrices = books.map(book => book.price)
+  console.log('BOOKS', books)
   // in future incorporate quantity so that it is price*quantity
   const total = bookPrices.reduce((partialSum, a) => partialSum + a, 0)
   this.update({
