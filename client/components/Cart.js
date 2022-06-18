@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCart, modifyProductInCart } from '../store/order_reducer'
+import { fetchCart, modifyProductInCart, sendCartCheckout, removeProductCart } from '../store/order_reducer'
 import { Link } from 'react-router-dom';
 
 class Cart extends React.Component {
@@ -24,6 +24,7 @@ class Cart extends React.Component {
     })
   }
 
+
   render() {
     const { quantity } = this.state
     const { books } = this.props.cart
@@ -44,13 +45,13 @@ class Cart extends React.Component {
                   <p>Price: {book.price}</p>
                   <p>Quantity: {book.bookOrder.quantity}</p>
                   <form>
-                    <input type="number" value={quantity} name="quantity" onChange={handleChange} min="0" />
+                    <input type="number" value={quantity} name="quantity" onChange={handleChange} min="1" />
                     <button onClick={() => this.props.modifyProductInCart(book, quantity)}>Update Cart</button>
                   </form>
-                  <button>Checkout</button>
+                  <button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</button>
+                  <button onClick={() => this.props.removeProductCart(book)}>Delete</button>
                 </div>
               </div>
-
             )
           }) : ''}
         </div>
@@ -65,10 +66,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { history }) => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity))
+    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity)),
+    sendCartCheckout: (cart) => dispatch(sendCartCheckout(cart, history)),
+    removeProductCart: (product) => dispatch(removeProductCart(product))
   }
 }
 
