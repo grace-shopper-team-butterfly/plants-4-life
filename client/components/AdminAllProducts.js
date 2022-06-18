@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from 'react-redux'
 import {fetchProducts, removeProductThunk} from '../store/books_reducer'
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+
 
 export class AdminAllProducts extends React.Component {
   constructor(props){
@@ -27,7 +29,7 @@ export class AdminAllProducts extends React.Component {
                   <p>${product.price / 100}</p>
               </div>
               </Link>
-              <button type="button" onClick={() => {this.props.removeProduct(product.id)}}>Delete</button>
+              <Button variant='contained' color='secondary' type="button" onClick={() => {this.props.removeProduct(product.id)}}>Delete</Button>
           </div>
       ))}
       </div>

@@ -26,13 +26,13 @@ const setUsers = (users) => ({
 // Thunk Creator
 
 export const fetchUsers = () => {
-    return async(dispatch) => {
-       
-            const token = localStorage.getItem('token')
-            const {data: users} = await axios.get(`/api/users/${token}`)
-            dispatch(setUsers(users))
-        
-    }
+  return async(dispatch) => {
+     
+          const token = localStorage.getItem('token')
+          const {data: users} = await axios.get(`/api/users/${token}`)
+          dispatch(setUsers(users))
+      
+  }
 }
 
 // Reducer

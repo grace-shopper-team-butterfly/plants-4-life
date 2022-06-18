@@ -22,6 +22,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material'
 
 class Cart extends React.Component {
   constructor() {
@@ -51,6 +52,7 @@ class Cart extends React.Component {
     console.log(this.props.cart)
     return (
       <div>
+
         <h1>Shopping Cart</h1>
         <Grid container spacing={1}>
           {/* <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 1 }}> */}
@@ -122,6 +124,7 @@ class Cart extends React.Component {
         <button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</button>
         {/* </Box> */}
       </div>
+
     )
   }
 }

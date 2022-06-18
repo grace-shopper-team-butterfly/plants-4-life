@@ -22,8 +22,11 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    const user =  await User.findByToken(req.headers.authorization)
+    if (user.isAdmin){
     const book = await Book.create(req.body)
     res.json(book)
+    }
   } catch (err) {
     next(err)
   }
@@ -60,9 +63,12 @@ router.put('/addCart/:bookId', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    const user =  await User.findByToken(req.headers.authorization)
+    if (user.isAdmin){
     const book = await Book.findByPk(req.params.id)
     await book.update(req.body)
     res.json(book)
+    }
   } catch (err) {
     next(err)
   }
@@ -70,9 +76,13 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    const product = await Book.findByPk(req.params.id)
-    await product.destroy()
-    res.send(product)
+    const user =  await User.findByToken(req.headers.authorization)
+    if (user.isAdmin){
+      const book = await Book.findByPk(req.params.id)
+      await book.destroy()
+      res.send(book)
+    }
+
   } catch (error) {
     next(error)
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux'
 import { addProductThunk } from "../store/books_reducer";
+import { Button } from "@mui/material";
 
 const initialState = {
   title: '',
@@ -54,7 +55,7 @@ export class AdminAddBooks extends React.Component {
           <input onChange={this.handleChange} name="price" value={price} />
           <label htmlFor="discription">Description: </label>
           <textarea onChange={this.handleChange} name="discription" value={discription} />
-          <button type="submit">Submit</button>
+          <Button variant="contained" color='secondary' type="submit">Submit</Button>
         </form>
       </div>
     )
@@ -69,7 +70,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch, {history}) => {
   return{
-    addProduct: newProduct => dispatch(addProductThunk(newProduct))
+    addProduct: newProduct => dispatch(addProductThunk(newProduct, history))
   }
 }
 
