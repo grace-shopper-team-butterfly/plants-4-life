@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCart, modifyProductInCart, sendCartCheckout, removeProductCart } from '../store/order_reducer'
 import { Link } from 'react-router-dom';
+import { Button } from '@mui/material'
 
 class Cart extends React.Component {
   constructor() {
@@ -44,12 +45,12 @@ class Cart extends React.Component {
                   <img src={book.imageUrl} />
                   <p>Price: {book.price}</p>
                   <p>Quantity: {book.bookOrder.quantity}</p>
-                  <form>
-                    <input type="number" value={quantity} name="quantity" onChange={handleChange} min="1" />
-                    <button onClick={() => this.props.modifyProductInCart(book, quantity)}>Update Cart</button>
+
+                    <input type="number" value={quantity} name="quantity" onChange={handleChange} min="0" />
+                    <Button variant='contained' onClick={() => this.props.modifyProductInCart(book, quantity)}>Update Cart</Button>
                   </form>
-                  <button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</button>
-                  <button onClick={() => this.props.removeProductCart(book)}>Delete</button>
+                  <Button variant='contained'>Checkout</Button>
+
                 </div>
               </div>
             )
