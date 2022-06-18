@@ -48,7 +48,6 @@ class Cart extends React.Component {
     const { quantity } = this.state
     const { books } = this.props.cart
     const { handleChange } = this
-    console.log(this.props.cart)
     return (
       <div>
         <h1>Shopping Cart</h1>
@@ -67,7 +66,7 @@ class Cart extends React.Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {books.map((book) => (
+                    {books.sort((a, b) => a.id - b.id).map((book) => (
                       <TableRow
                         key={book.id}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -108,10 +107,14 @@ class Cart extends React.Component {
                       <TableCell>${this.props.cart.purchaseTotal / 100}</TableCell>
                     </TableRow>
                     <TableRow align="center">
-                      <Button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</Button>
+                      <TableCell>
+                        <Button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</Button>
+                      </TableCell>
                     </TableRow>
                     <TableRow align="center">
-                      <img src='https://images.squarespace-cdn.com/content/v1/5a760a4890bade7aa2cc94b2/1530909622840-T9MKK1Y7MHGJRECSTWXQ/credit-card-logos+copy.png?format=1000w' height="30px" />
+                      <TableCell>
+                        <img src='https://images.squarespace-cdn.com/content/v1/5a760a4890bade7aa2cc94b2/1530909622840-T9MKK1Y7MHGJRECSTWXQ/credit-card-logos+copy.png?format=1000w' height="30px" />
+                      </TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
