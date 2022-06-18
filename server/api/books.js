@@ -51,9 +51,10 @@ router.put('/addCart/:bookId', async (req, res, next) => {
       await bookOrder.save()
 
     } else {
-      cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
+      await cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
     }
-    cart.calculateTotal()
+    await cart.calculateTotal()
+
     res.json(cart)
   } catch (error) {
     console.log(error)
@@ -74,17 +75,17 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-
-router.delete('/:id', async(req,res,next)=> {
+router.delete('/:id', async (req, res, next) => {
   try {
     const user =  await User.findByToken(req.headers.authorization)
     if (user.isAdmin){
-      const product = await Book.findByPk(req.params.id)
-      await product.destroy()
-      res.send(product)
+      const book = await Book.findByPk(req.params.id)
+      await book.destroy()
+      res.send(book)
     }
+
   } catch (error) {
-      next(error)
+    next(error)
   }
 })
 

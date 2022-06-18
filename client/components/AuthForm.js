@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { authenticate } from '../store'
+import { TextField, Button } from '@mui/material'
 
 /**
  * COMPONENT
@@ -10,28 +11,19 @@ const AuthForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form noValidate autoComplete="off" onSubmit={handleSubmit} name={name}>
         {props.name === 'signup' ? <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+        <TextField label="Email" name='email' variant="outlined" color='secondary' required/>
         </div> : ''}
 
         <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
+          <TextField label="UserName" name='username' variant="outlined" color='secondary' required/>
         </div>
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+          <TextField label="Password"  name="password" variant="outlined" color='secondary' required/>
         </div>
         <div>
-          <button type="submit">{displayName}</button>
+          <Button variant='contained' color='secondary' type="submit">{displayName}</Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
