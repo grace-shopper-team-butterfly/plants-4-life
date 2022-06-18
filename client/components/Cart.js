@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchCart, modifyProductInCart } from '../store/order_reducer'
+import { fetchCart, modifyProductInCart, sendCartCheckout, removeProductCart } from '../store/order_reducer'
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material'
 
@@ -25,6 +25,7 @@ class Cart extends React.Component {
     })
   }
 
+
   render() {
     const { quantity } = this.state
     const { books } = this.props.cart
@@ -44,14 +45,14 @@ class Cart extends React.Component {
                   <img src={book.imageUrl} />
                   <p>Price: {book.price}</p>
                   <p>Quantity: {book.bookOrder.quantity}</p>
-                  <form>
+
                     <input type="number" value={quantity} name="quantity" onChange={handleChange} min="0" />
                     <Button variant='contained' onClick={() => this.props.modifyProductInCart(book, quantity)}>Update Cart</Button>
                   </form>
                   <Button variant='contained'>Checkout</Button>
+
                 </div>
               </div>
-
             )
           }) : ''}
         </div>
@@ -66,10 +67,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { history }) => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity))
+    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity)),
+    sendCartCheckout: (cart) => dispatch(sendCartCheckout(cart, history)),
+    removeProductCart: (product) => dispatch(removeProductCart(product))
   }
 }
 

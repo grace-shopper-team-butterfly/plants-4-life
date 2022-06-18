@@ -50,8 +50,9 @@ router.put('/addCart/:bookId', async (req, res, next) => {
       await bookOrder.update({ quantity: newQty, subTotal: book.price * newQty })
       await bookOrder.save()
     } else {
-      cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
+      await cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
     }
+    await cart.calculateTotal()
 
     res.json(cart)
   } catch (error) {
@@ -73,8 +74,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-
-router.delete('/:id', async(req,res,next)=> {
+router.delete('/:id', async (req, res, next) => {
   try {
     const user =  await User.findByToken(req.headers.authorization)
     if (user.isAdmin){
@@ -82,8 +82,9 @@ router.delete('/:id', async(req,res,next)=> {
       await book.destroy()
       res.send(book)
     }
+
   } catch (error) {
-      next(error)
+    next(error)
   }
 })
 
