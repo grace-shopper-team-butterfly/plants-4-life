@@ -25,7 +25,7 @@ class OrderHistory extends React.Component {
                         return (
                             <div key={order.id}> 
                                 <p>Confirmation Number:{order.id}</p>
-                                <p>Order Date: {order.orderDate.slice(0,10)}</p>
+                                {/* <p>Order Date: {order.orderDate.slice(0,10)}</p> */}
                                 <p>Purchase Total: ${order.purchaseTotal / 100}</p>
                                 {order.books.map(book => {
                                     return (

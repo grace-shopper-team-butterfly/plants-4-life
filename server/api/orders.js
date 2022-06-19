@@ -37,7 +37,7 @@ router.put('/modifyCart/:id/:quantity', async (req, res, next) => {
 
     await cart.calculateTotal()
 
-    const updatedCart = await Order.findByPk(4, { include: [{ model: Book, as: 'books' }] })
+    const updatedCart = await Order.findByPk(cart.id, { include: [{ model: Book, as: 'books' }] })
 
     res.json(updatedCart)
 
