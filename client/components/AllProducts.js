@@ -73,9 +73,6 @@ export class AllProducts extends React.Component {
                             </Typography>
                           </CardContent>
                           <CardActions disableSpacing>
-                            <IconButton aria-label="add to favorites">
-                              <FavoriteIcon />
-                            </IconButton>
                             <IconButton aria-label="share">
                               <ShoppingCartIcon/>
                             </IconButton>

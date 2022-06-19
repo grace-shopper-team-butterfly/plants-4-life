@@ -18,7 +18,7 @@ import { blue } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Grid } from '@mui/material';
+import { Grid, Button } from '@mui/material';
 
 
 class SingleProduct extends React.Component {
@@ -81,9 +81,9 @@ class SingleProduct extends React.Component {
                   </Typography>
                 </CardContent>
                 <CardActions >
-                  <IconButton onClick={() => this.handleAddToCart(product)} aria-label="share">
+                  <Button onClick={() => this.handleAddToCart(product)} aria-label="share">
                     <ShoppingCartIcon/> Add to Cart
-                  </IconButton>
+                  </Button>
                   </CardActions>
                   
                   </Card>

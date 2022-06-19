@@ -39,23 +39,6 @@ export class AdminAllProducts extends React.Component {
     const {products} = this.props
     console.log(this.props.removeProduct, 'DELETE')
     return(
-  //     <div>
-  //     <h1>Books</h1>
-  //     <div className='allDisplay'>
-  //     {products.map(product => (
-  //         <div key={product.id}>
-  //             <Link to={`/products/${product.id}/forms/edit`} key= {product.id}>
-  //             <div className='singleProduct' key={product.id}>
-  //                 <h1>{product.title}</h1>
-  //                 <img src={product.imageUrl}/>
-  //                 <p>${product.price / 100}</p>
-  //             </div>
-  //             </Link>
-  //             <Button variant='contained' color='secondary' type="button" onClick={() => {this.props.removeProduct(product.id)}}>Delete</Button>
-  //         </div>
-  //     ))}
-  //     </div>
-  // </div>
   <Container >
     <h1>All Books</h1>
             <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{my: 3}}>

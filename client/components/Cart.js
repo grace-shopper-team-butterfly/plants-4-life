@@ -22,6 +22,7 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 
 
 class Cart extends React.Component {
@@ -109,7 +110,7 @@ class Cart extends React.Component {
                       <TableCell>${this.props.cart.purchaseTotal / 100}</TableCell>
                     </TableRow>
                     <TableRow align="center">
-                      <Button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</Button>
+                      <Button onClick={() => this.props.sendCartCheckout(this.props.cart)}><ShoppingCartCheckoutIcon/>Checkout</Button>
                     </TableRow>
                     <TableRow align="center">
                       <img src='https://images.squarespace-cdn.com/content/v1/5a760a4890bade7aa2cc94b2/1530909622840-T9MKK1Y7MHGJRECSTWXQ/credit-card-logos+copy.png?format=1000w' height="30px" />
@@ -120,8 +121,6 @@ class Cart extends React.Component {
             </Card>
           </Grid>
         </Grid>
-        <Button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</Button>
-        {/* </Box> */}
       </div>
 
     )
