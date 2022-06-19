@@ -32,12 +32,14 @@ router.put('/modifyCart/:id/:quantity', async (req, res, next) => {
     // Modifying the quantity of books for the cart
     const bookOrder = await BookOrder.findOne({ where: { orderId: cart.id, bookId: book.id } })
 
-    await bookOrder.update({ quantity: req.params.quantity })
+    await bookOrder.update({ quantity: Number(req.params.quantity) })
     await bookOrder.save()
 
     await cart.calculateTotal()
 
-    res.json(cart)
+    const updatedCart = await Order.findByPk(4, { include: [{ model: Book, as: 'books' }] })
+
+    res.json(updatedCart)
 
   } catch (error) {
     next(error)
