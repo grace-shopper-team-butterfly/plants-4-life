@@ -20,9 +20,10 @@ import {
   Typography,
   Paper
 } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete'
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
-import { Button } from '@mui/material'
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+
 
 class Cart extends React.Component {
   constructor() {
@@ -54,7 +55,6 @@ class Cart extends React.Component {
 
         <h1>Shopping Cart</h1>
         <Grid container spacing={1}>
-          {/* <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 1 }}> */}
           {books ?
             <Grid item md={9} xs={12}>
               <TableContainer component={Paper}>
@@ -124,8 +124,6 @@ class Cart extends React.Component {
             </Card>
           </Grid>
         </Grid>
-        <button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</button>
-        {/* </Box> */}
       </div>
 
     )
@@ -141,7 +139,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity)),
+    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity, history)),
     sendCartCheckout: (cart) => dispatch(sendCartCheckout(cart, history)),
     removeProductCart: (product) => dispatch(removeProductCart(product))
   }

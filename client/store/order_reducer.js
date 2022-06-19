@@ -47,19 +47,20 @@ export const fetchCart = () => {
   }
 }
 
-export const addProductToCart = (product) => {
+export const addProductToCart = (product, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
       const { data } = await axios.put(`/api/products/addCart/${product.id}`, { token: token })
       dispatch(addProduct(data))
+      history.push('/cart')
     } catch (error) {
       console.log(error)
     }
   }
 }
 
-export const modifyProductInCart = (product, quantity) => {
+export const modifyProductInCart = (product, quantity, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
@@ -69,6 +70,7 @@ export const modifyProductInCart = (product, quantity) => {
         }
       })
       dispatch(modifyProduct(data))
+      history.push('/cart')
     } catch (error) {
       console.log(error)
     }

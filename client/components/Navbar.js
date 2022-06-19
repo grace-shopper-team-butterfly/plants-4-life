@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import { AppBar, Box, Toolbar, Typography, Button, IconButton } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
 
@@ -27,9 +30,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
-              <Button color="inherit"><Link to="/home">Home</Link></Button>
-              <Button color="inherit"><Link to='/products'>Products</Link></Button>
-              <Button color="inherit"><Link to='/cart'>Cart</Link></Button>
+              <Link to="/home"><Button color="inherit" startIcon={< HomeIcon/>} size='large'>Home</Button></Link>
+              <Link to='/products'><Button color="inherit" startIcon={< MenuBookIcon/>}>Products</Button></Link>
+              <Link to='/cart'><Button color="inherit" startIcon={< ShoppingCartIcon/>} size='large'>Cart</Button></Link>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>

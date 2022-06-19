@@ -41,7 +41,7 @@ router.put('/addCart/:bookId', async (req, res, next) => {
 
     // Finding or creating a cart (isFulfilled: false)
     let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false }, include: [{ model: Book, as: 'books' }] })
-
+    
     // Adding the book to the cart
 
     if (await cart.hasBook(book.id)) {
@@ -49,6 +49,7 @@ router.put('/addCart/:bookId', async (req, res, next) => {
       let newQty = bookOrder.quantity + 1
       await bookOrder.update({ quantity: newQty, subTotal: book.price * newQty })
       await bookOrder.save()
+
     } else {
       await cart.addBook(book.id, { through: { quantity: 1, subTotal: book.price } })
     }

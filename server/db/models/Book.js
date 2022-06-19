@@ -15,7 +15,7 @@ const Book = db.define('book', {
   },
   imageUrl: {
     type: Sequelize.TEXT,
-    defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7L3wF7n8RofIc0WkSQOiZU6M5zATh7kYbZw&usqp=CAU'
+    defaultValue: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTFprE-bwYgyFf9WYbBkkWWtGj2Jf_yyoKdA&usqp=CAU'
   },
   price: {
     type: Sequelize.INTEGER,

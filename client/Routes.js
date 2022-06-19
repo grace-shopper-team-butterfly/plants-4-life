@@ -30,15 +30,15 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route path='/forms/add'component={AdminAddBooks} />
-            <Route path='/products/:id/forms/edit'component={AdminUpdateBooks} />
-            <Route path='/products/adminproducts' component={AdminAllProducts} />
-            <Route path='/products/:productId(\d+)' component={SingleProduct} />
+            <Route exact path='/forms/add'component={AdminAddBooks} />
+            <Route exact path='/products/:id/forms/edit'component={AdminUpdateBooks} />
+            <Route exact path='/products/adminproducts' component={AdminAllProducts} />
+            <Route exact path='/products/:productId(\d+)' component={SingleProduct} />
             <Route exact path="/products" component={AllProducts} />
             <Route exact path='/orderHistory' component={OrderHistory}/>
-            <Route path="/home" component={Home} />
-            <Route path='/users' component={AllUsers} />
-            <Route path='/cart' component={Cart} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path='/users' component={AllUsers} />
+            <Route exact path='/cart' component={Cart} />
             <Redirect to="/home" />
           </Switch>
         ) : (
