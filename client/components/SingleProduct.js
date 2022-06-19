@@ -42,15 +42,10 @@ class SingleProduct extends React.Component {
         if (!this.props.product) return <h1>Loading</h1>
         else {
             return (
-                // <div key={product.id}>
-                //     <h1>{product.title}</h1>
-                //     <img src={product.imageUrl} />
-                //     <p>{product.description}</p>
-                //     <p>${product.price / 100}</p>
-                //     <button onClick={() => this.handleAddToCart(product)}>Add to cart</button>
+               
                 <Grid container padding={5} justify='center'  spacing={2}>
                     <Grid item>
-                <Card sx={{ maxWidth: 600}} justifyContent="center">
+                <Card sx={{ maxWidth: 700}} justifyContent="center">
                 <CardHeader
                   avatar={
                     <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
@@ -62,7 +57,7 @@ class SingleProduct extends React.Component {
                 <CardMedia
                   component="img"
                   height='600'
-                //   maxWidth='100%'
+                  maxWidth='100%'
                   object-fit= 'cover' 
                   image={product.imageUrl}
                 />
@@ -79,7 +74,7 @@ class SingleProduct extends React.Component {
                     {product.author}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Description: ${product.description}
+                    Description: {product.description}
                   </Typography>
                   <Typography variant="h6" color="text.secondary">
                     Price: ${product.price / 100}
