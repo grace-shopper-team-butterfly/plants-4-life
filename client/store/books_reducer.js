@@ -76,6 +76,7 @@ export const updateProductThunk = ( product, history) => async dispatch => {
 
 export const removeProductThunk = (id, history) => {
     return async (dispatch) => {
+      const token = localStorage.getItem('token')
       const {data: deletedProduct} = await axios.delete(`/api/products/${id}`,
       {
         headers: {

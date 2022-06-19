@@ -23,6 +23,7 @@ import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import { Container } from '@mui/system';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { spacing } from '@mui/system';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 export class AdminAllProducts extends React.Component {
@@ -36,6 +37,7 @@ export class AdminAllProducts extends React.Component {
 
   render() {
     const {products} = this.props
+    console.log(this.props.removeProduct, 'DELETE')
     return(
   //     <div>
   //     <h1>Books</h1>
@@ -55,13 +57,11 @@ export class AdminAllProducts extends React.Component {
   //     </div>
   // </div>
   <Container >
-            <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{my: 10}}>
-                {/* <h1>Books</h1> */}
-                
+    <h1>All Books</h1>
+            <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{my: 3}}>
                 {products.length ? products.map(product => {
                     return (
-                        <Link to={`/products/${product.id}`} key= {product.id} justify-content="space-between">
-                        <Grid  item key={product.id} xs={12} >
+                        <Grid  item key={product.id} xs={4} >
                         <Card sx={{ maxWidth: 345, minWidth: 345}} display='block'>
                           <CardHeader
                             avatar={
@@ -73,7 +73,7 @@ export class AdminAllProducts extends React.Component {
                           <CardMedia
                             component="img"
                             height="300"
-                            maxWidth="300"
+                            // maxWidth="300"
                             object-fit= 'cover' 
                             image={product.imageUrl}
                           />
@@ -89,14 +89,19 @@ export class AdminAllProducts extends React.Component {
                             </Typography>
                           </CardContent>
                           <CardActions disableSpacing>
-                            <IconButton aria-label="delete" onClick={() => {this.props.removeProduct(product.id)}}>
+                            <Button aria-label="delete"  type="button" onClick={() => {this.props.removeProduct(product.id)}}>
                               <DeleteIcon/>Delete
-                            </IconButton>
+                            </Button>
+                            <Link to={`/products/${product.id}/forms/edit`} key= {product.id} >
+                              <Button>
+                                <EditIcon/> Edit
+                              </Button>
+                            </Link>
                             </CardActions>
                         </Card>
                                           
                        </Grid>
-                       </Link>
+                      //  </Link>
                    )
                }) : ''}
                </Grid>
