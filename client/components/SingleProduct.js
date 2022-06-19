@@ -14,7 +14,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -48,14 +48,16 @@ class SingleProduct extends React.Component {
                 //     <p>{product.description}</p>
                 //     <p>${product.price / 100}</p>
                 //     <button onClick={() => this.handleAddToCart(product)}>Add to cart</button>
-                <Grid container padding={20} justify='center'>
+                <Grid container padding={5} justify='center'  spacing={2}>
+                    <Grid item>
                 <Card sx={{ maxWidth: 600}} justifyContent="center">
                 <CardHeader
                   avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                    <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
                       <MenuBookOutlinedIcon/>
                     </Avatar>
                   }
+                  title={product.title}
                 />
                 <CardMedia
                   component="img"
@@ -64,11 +66,16 @@ class SingleProduct extends React.Component {
                   object-fit= 'cover' 
                   image={product.imageUrl}
                 />
-                <CardContent>
-                <Typography variant="h6" color="text.secondary">
+                  
+              </Card>
+              </Grid>
+              <Grid item>
+                  <Card sx={{ maxWidth: 600}}>
+                  <CardContent >
+                <Typography variant="h4" color="text.secondary">
                     {product.title}
                   </Typography>
-                  <Typography variant="p" color="text.secondary">
+                  <Typography variant="h6" color="text.secondary">
                     {product.author}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -84,7 +91,9 @@ class SingleProduct extends React.Component {
                   </IconButton>
                   </CardActions>
                   
-              </Card>
+                  </Card>
+
+              </Grid>
               </Grid>
             )
         }
@@ -97,10 +106,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, {history}) => {
     return {
         fetchOneProduct: (productId) => dispatch(fetchOneProduct(productId)),
-        addProductToCart: (product) => dispatch(addProductToCart(product))
+        addProductToCart: (product) => dispatch(addProductToCart(product, history))
     }
 }
 

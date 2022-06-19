@@ -55,7 +55,6 @@ class Cart extends React.Component {
 
         <h1>Shopping Cart</h1>
         <Grid container spacing={1}>
-          {/* <Box sx={{ display: 'flex', justifyContent: 'space-around', gap: 1 }}> */}
           {books ?
             <Grid item md={9} xs={12}>
               <TableContainer component={Paper}>
@@ -138,7 +137,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, { history }) => {
   return {
     fetchCart: () => dispatch(fetchCart()),
-    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity)),
+    modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity, history)),
     sendCartCheckout: (cart) => dispatch(sendCartCheckout(cart, history)),
     removeProductCart: (product) => dispatch(removeProductCart(product))
   }
