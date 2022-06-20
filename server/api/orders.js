@@ -19,6 +19,26 @@ router.put('/checkout/:id', async (req, res, next) => {
   }
 })
 
+router.post('/guestCheckout', async (req, res, next) => {
+  try {
+    console.log(req.body.cart,req.body.purchaseTotal, 'books')
+    const newOrder = await Order.create({isFulfilled: true, orderDate: new Date(), purchaseTotal: req.body.purchaseTotal})
+    const cart = req.body.cart.map(item => item.id)
+    const associations = req.body.cart.map(item => item.bookOrder)
+    await newOrder.addBooks(cart)
+    associations.forEach(async function(item) {
+      let bookOrder = await BookOrder.findOne({ where: { orderId: newOrder.id, bookId: item.id } })
+      await bookOrder.update({ quantity: Number(item.quantity) })
+      await bookOrder.save()
+    })
+    
+ 
+    res.json({})
+  } catch (error) {
+    next(error)
+  }
+})
+
 // Search for the user that is shopping and find the cart
 // PUT api/orders/remCart/:id - remove verbs from path
 router.put('/modifyCart/:id/:quantity', async (req, res, next) => {
