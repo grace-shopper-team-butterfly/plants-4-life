@@ -51,8 +51,29 @@ export const addProductToCart = (product, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data } = await axios.put(`/api/products/addCart/${product.id}`, { token: token })
-      dispatch(addProduct(data))
+      dispatch(addProduct(data))}
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        if (jsonValue != null) {
+          const cart = JSON.parse(jsonValue)
+          const cartWithProduct = cart.filter(item => item.id === product.id)
+          if (cartWithProduct[0]){
+            let index = cart.indexOf(cartWithProduct[0])
+            cart[index].quantity = cart[index].quantity + 1
+            console.log('index', cart[index].quantity)
+            localStorage.setItem('cart', JSON.stringify(cart))
+          }
+          else { 
+            product.quantity = 1
+            cart.push(product)
+          localStorage.setItem('cart', JSON.stringify(cart))
+          }
+        }
+        else{ product.quantity = 1
+          localStorage.setItem('cart', JSON.stringify([product]))}
+      }
       history.push('/cart')
     } catch (error) {
       console.log(error)
