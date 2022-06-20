@@ -46,9 +46,9 @@ export const fetchCart = () => {
       else {
         const jsonValue = localStorage.getItem('cart')
         const cart = JSON.parse(jsonValue)
-        const purchaseTotal = cart.map(item => item.bookOrder.subTotal).reduce((previousValue, currentValue) => previousValue + currentValue,
+        if(cart !== null){const purchaseTotal = cart.map(item => item.bookOrder.subTotal).reduce((previousValue, currentValue) => previousValue + currentValue,
         0)
-        dispatch(setOrder({books: cart, purchaseTotal }))
+        dispatch(setOrder({books: cart, purchaseTotal }))}
       }
     } 
   }
@@ -132,6 +132,7 @@ export const sendCartCheckout = (cart, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data } = await axios.put(`/api/orders/checkout/${cart.id}`, {}, {
         headers: {
           authorization: token
@@ -139,6 +140,17 @@ export const sendCartCheckout = (cart, history) => {
       })
       dispatch(checkoutCart(data))
       history.push('/home')
+      }
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        const cart = JSON.parse(jsonValue)
+        const purchaseTotal = cart.map(item => item.bookOrder.subTotal).reduce((previousValue, currentValue) => previousValue + currentValue,
+        0)
+        await axios.post('/api/orders/guestCheckout', {cart: cart, purchaseTotal: purchaseTotal})
+        localStorage.setItem('cart', JSON.stringify([]))
+        dispatch(checkoutCart({}))
+        history.push('/home')
+      }
     } catch (error) {
       console.log(error)
     }
