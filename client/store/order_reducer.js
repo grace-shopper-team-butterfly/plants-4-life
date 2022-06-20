@@ -37,27 +37,22 @@ const removeProductFromCart = (cart) => ({
 // Thunk Creator
 export const fetchCart = () => {
   return async (dispatch) => {
-    try {
+
       const token = localStorage.getItem('token')
       if (token != null){
       const { data: cart } = await axios.get(`/api/orders/${token}`)
-      console.log('cart api', cart)
       dispatch(setOrder(cart))
       }
       else {
         const jsonValue = localStorage.getItem('cart')
         const cart = JSON.parse(jsonValue)
-        console.log('cart', cart)
-        dispatch(setOrder({books: cart }))
+        const purchaseTotal = cart.map(item => item.bookOrder.subTotal).reduce((previousValue, currentValue) => previousValue + currentValue,
+        0)
+        dispatch(setOrder({books: cart, purchaseTotal }))
       }
-      // dispatch(setOrder(cart))
-      
-
-    } catch (error) {
-      console.log(error)
-    }
+    } 
   }
-}
+
 
 export const addProductToCart = (product, history) => {
   return async (dispatch) => {
@@ -102,12 +97,31 @@ export const modifyProductInCart = (product, quantity, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data } = await axios.put(`/api/orders/modifyCart/${product.id}/${quantity}`, {}, {
         headers: {
           authorization: token
         }
       })
       dispatch(modifyProduct(data))
+      }
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        const cart = JSON.parse(jsonValue)
+        const updatedCart = cart.map(item => 
+          {if(item.id === product.id){
+            return {...item, bookOrder: {
+            quantity: quantity,
+            subTotal: quantity * item.price
+          }}
+        }
+        else return item
+        }
+          )
+          console.log('updatecart', updatedCart)
+          localStorage.setItem('cart', JSON.stringify(updatedCart))
+          dispatch(modifyProduct(updatedCart))
+      }
       history.push('/cart')
     } catch (error) {
       console.log(error)
@@ -135,13 +149,23 @@ export const sendCartCheckout = (cart, history) => {
 export const removeProductCart = (product) => {
   return async (dispatch) => {
     const token = localStorage.getItem('token')
+    if (token != null){
     const { data } = await axios.delete(`/api/orders/${product.id}`, {
       headers: {
         authorization: token
       }
     })
-    dispatch(removeProductFromCart(data))
+    dispatch(removeProductFromCart(data, history))
+    }
+    else {
+    const jsonValue = localStorage.getItem('cart')
+    const cart = JSON.parse(jsonValue)
+    const updatedCart = cart.filter(item => item.id !== product.id)
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
+    dispatch(removeProductFromCart(updatedCart))
+    history.push('/products')
   }
+}
 }
 
 export default function cartReducer(state = {}, action) {

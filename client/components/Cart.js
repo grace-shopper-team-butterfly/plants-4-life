@@ -50,7 +50,7 @@ class Cart extends React.Component {
     const { quantity } = this.state
     const { books } = this.props.cart
     const { handleChange } = this
-    console.log('books', books)
+    console.log('book', books)
     return (
       <div>
 
@@ -142,7 +142,7 @@ const mapDispatchToProps = (dispatch, { history }) => {
     fetchCart: () => dispatch(fetchCart()),
     modifyProductInCart: (product, quantity) => dispatch(modifyProductInCart(product, quantity, history)),
     sendCartCheckout: (cart) => dispatch(sendCartCheckout(cart, history)),
-    removeProductCart: (product) => dispatch(removeProductCart(product))
+    removeProductCart: (product) => dispatch(removeProductCart(product, history))
   }
 }
 
