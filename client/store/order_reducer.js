@@ -39,8 +39,20 @@ export const fetchCart = () => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data: cart } = await axios.get(`/api/orders/${token}`)
+      console.log('cart api', cart)
       dispatch(setOrder(cart))
+      }
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        const cart = JSON.parse(jsonValue)
+        console.log('cart', cart)
+        dispatch(setOrder({books: cart}))
+      }
+      // dispatch(setOrder(cart))
+      
+
     } catch (error) {
       console.log(error)
     }
@@ -61,17 +73,18 @@ export const addProductToCart = (product, history) => {
           const cartWithProduct = cart.filter(item => item.id === product.id)
           if (cartWithProduct[0]){
             let index = cart.indexOf(cartWithProduct[0])
-            cart[index].quantity = cart[index].quantity + 1
+            cart[index].bookOrder.quantity = cart[index].bookOrder.quantity + 1
             console.log('index', cart[index].quantity)
             localStorage.setItem('cart', JSON.stringify(cart))
           }
           else { 
-            product.quantity = 1
+            product.bookOrder={quantity : 1}
             cart.push(product)
           localStorage.setItem('cart', JSON.stringify(cart))
           }
         }
-        else{ product.quantity = 1
+        else{ 
+          product.bookOrder={quantity : 1}
           localStorage.setItem('cart', JSON.stringify([product]))}
       }
       history.push('/cart')

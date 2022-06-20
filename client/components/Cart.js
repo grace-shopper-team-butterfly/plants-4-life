@@ -50,6 +50,7 @@ class Cart extends React.Component {
     const { quantity } = this.state
     const { books } = this.props.cart
     const { handleChange } = this
+    console.log('books', books)
     return (
       <div>
 
