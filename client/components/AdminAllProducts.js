@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux'
-import {fetchProducts, removeProductThunk} from '../store/books_reducer'
+import { fetchProducts, removeProductThunk } from '../store/books_reducer'
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { styled } from '@mui/material/styles';
@@ -27,68 +27,68 @@ import EditIcon from '@mui/icons-material/Edit';
 
 
 export class AdminAllProducts extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchProducts()
   }
 
   render() {
-    const {products} = this.props
-    console.log(this.props.removeProduct, 'DELETE')
-    return(
-  <Container >
-    <h1>All Books</h1>
-            <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{my: 3}}>
-                {products.length ? products.map(product => {
-                    return (
-                        <Grid  item key={product.id} xs={4} >
-                        <Card sx={{ maxWidth: 345, minWidth: 345}} display='block'>
-                          <CardHeader
-                            avatar={
-                              <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
-                                <MenuBookOutlinedIcon/>
-                              </Avatar>
-                            }
-                          />
-                          <CardMedia
-                            component="img"
-                            height="300"
-                            // maxWidth="300"
-                            object-fit= 'cover' 
-                            image={product.imageUrl}
-                          />
-                          <CardContent>
-                          <Typography variant="h6" color="text.secondary">
-                              {product.title}
-                            </Typography>
-                            <Typography variant="p" color="text.secondary">
-                              {product.author}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Price: ${product.price / 100}
-                            </Typography>
-                          </CardContent>
-                          <CardActions disableSpacing>
-                            <Button aria-label="delete"  type="button" onClick={() => {this.props.removeProduct(product.id)}}>
-                              <DeleteIcon/>Delete
-                            </Button>
-                            <Link to={`/products/${product.id}/forms/edit`} key= {product.id} >
-                              <Button>
-                                <EditIcon/> Edit
-                              </Button>
-                            </Link>
-                            </CardActions>
-                        </Card>
-                                          
-                       </Grid>
-                      //  </Link>
-                   )
-               }) : ''}
-               </Grid>
-               </Container>
+    const { products } = this.props
+
+    return (
+      <Container >
+        <h1>All Books</h1>
+        <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{ my: 3 }}>
+          {products.length ? products.map(product => {
+            return (
+              <Grid item key={product.id} xs={4} >
+                <Card sx={{ maxwidth: 345, minWidth: 345 }} display='block'>
+                  <CardHeader
+                    avatar={
+                      <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
+                        <MenuBookOutlinedIcon />
+                      </Avatar>
+                    }
+                  />
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    // maxwidth="300"
+                    object-fit='cover'
+                    image={product.imageUrl}
+                  />
+                  <CardContent>
+                    <Typography variant="h6" color="text.secondary">
+                      {product.title}
+                    </Typography>
+                    <Typography variant="p" color="text.secondary">
+                      {product.author}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Price: ${product.price / 100}
+                    </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing>
+                    <Button aria-label="delete" type="button" onClick={() => { this.props.removeProduct(product.id) }}>
+                      <DeleteIcon />Delete
+                    </Button>
+                    <Link to={`/products/${product.id}/forms/edit`} key={product.id} >
+                      <Button>
+                        <EditIcon /> Edit
+                      </Button>
+                    </Link>
+                  </CardActions>
+                </Card>
+
+              </Grid>
+              //  </Link>
+            )
+          }) : ''}
+        </Grid>
+      </Container>
     )
   }
 }
@@ -101,7 +101,7 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch, {history}) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     fetchProducts: () => dispatch(fetchProducts()),
     removeProduct: (product) => dispatch(removeProductThunk(product, history))
