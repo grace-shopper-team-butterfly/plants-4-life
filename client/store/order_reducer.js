@@ -48,7 +48,7 @@ export const fetchCart = () => {
         const jsonValue = localStorage.getItem('cart')
         const cart = JSON.parse(jsonValue)
         console.log('cart', cart)
-        dispatch(setOrder({books: cart}))
+        dispatch(setOrder({books: cart }))
       }
       // dispatch(setOrder(cart))
       
@@ -73,18 +73,22 @@ export const addProductToCart = (product, history) => {
           const cartWithProduct = cart.filter(item => item.id === product.id)
           if (cartWithProduct[0]){
             let index = cart.indexOf(cartWithProduct[0])
-            cart[index].bookOrder.quantity = cart[index].bookOrder.quantity + 1
-            console.log('index', cart[index].quantity)
+          
+            cart[index].bookOrder = {
+              quantity: cart[index].bookOrder.quantity + 1,
+              subTotal: (cart[index].bookOrder.quantity + 1 )* cart[index].price
+            }
+        
             localStorage.setItem('cart', JSON.stringify(cart))
           }
           else { 
-            product.bookOrder={quantity : 1}
+            product.bookOrder={quantity : 1, subTotal: product.price}
             cart.push(product)
           localStorage.setItem('cart', JSON.stringify(cart))
           }
         }
         else{ 
-          product.bookOrder={quantity : 1}
+          product.bookOrder={quantity : 1, subTotal: product.price}
           localStorage.setItem('cart', JSON.stringify([product]))}
       }
       history.push('/cart')
