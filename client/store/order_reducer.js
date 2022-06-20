@@ -37,22 +37,55 @@ const removeProductFromCart = (cart) => ({
 // Thunk Creator
 export const fetchCart = () => {
   return async (dispatch) => {
-    try {
+
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data: cart } = await axios.get(`/api/orders/${token}`)
       dispatch(setOrder(cart))
-    } catch (error) {
-      console.log(error)
-    }
+      }
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        const cart = JSON.parse(jsonValue)
+        const purchaseTotal = cart.map(item => item.bookOrder.subTotal).reduce((previousValue, currentValue) => previousValue + currentValue,
+        0)
+        dispatch(setOrder({books: cart, purchaseTotal }))
+      }
+    } 
   }
-}
+
 
 export const addProductToCart = (product, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data } = await axios.put(`/api/products/addCart/${product.id}`, { token: token })
-      dispatch(addProduct(data))
+      dispatch(addProduct(data))}
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        if (jsonValue != null) {
+          const cart = JSON.parse(jsonValue)
+          const cartWithProduct = cart.filter(item => item.id === product.id)
+          if (cartWithProduct[0]){
+            let index = cart.indexOf(cartWithProduct[0])
+          
+            cart[index].bookOrder = {
+              quantity: cart[index].bookOrder.quantity + 1,
+              subTotal: (cart[index].bookOrder.quantity + 1 )* cart[index].price
+            }
+        
+            localStorage.setItem('cart', JSON.stringify(cart))
+          }
+          else { 
+            product.bookOrder={quantity : 1, subTotal: product.price}
+            cart.push(product)
+          localStorage.setItem('cart', JSON.stringify(cart))
+          }
+        }
+        else{ 
+          product.bookOrder={quantity : 1, subTotal: product.price}
+          localStorage.setItem('cart', JSON.stringify([product]))}
+      }
       history.push('/cart')
     } catch (error) {
       console.log(error)
@@ -64,12 +97,30 @@ export const modifyProductInCart = (product, quantity, history) => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('token')
+      if (token != null){
       const { data } = await axios.put(`/api/orders/modifyCart/${product.id}/${quantity}`, {}, {
         headers: {
           authorization: token
         }
       })
       dispatch(modifyProduct(data))
+      }
+      else {
+        const jsonValue = localStorage.getItem('cart')
+        const cart = JSON.parse(jsonValue)
+        const updatedCart = cart.map(item => 
+          {if(item.id === product.id){
+            return {...item, bookOrder: {
+            quantity: quantity,
+            subTotal: quantity * item.price
+          }}
+        }
+        else return item
+        }
+          )
+          localStorage.setItem('cart', JSON.stringify(updatedCart))
+          dispatch(modifyProduct(updatedCart))
+      }
       history.push('/cart')
     } catch (error) {
       console.log(error)
@@ -97,13 +148,23 @@ export const sendCartCheckout = (cart, history) => {
 export const removeProductCart = (product) => {
   return async (dispatch) => {
     const token = localStorage.getItem('token')
+    if (token != null){
     const { data } = await axios.delete(`/api/orders/${product.id}`, {
       headers: {
         authorization: token
       }
     })
-    dispatch(removeProductFromCart(data))
+    dispatch(removeProductFromCart(data, history))
+    }
+    else {
+    const jsonValue = localStorage.getItem('cart')
+    const cart = JSON.parse(jsonValue)
+    const updatedCart = cart.filter(item => item.id !== product.id)
+    localStorage.setItem('cart', JSON.stringify(updatedCart))
+    dispatch(removeProductFromCart(updatedCart))
+    history.push('/cart')
   }
+}
 }
 
 export default function cartReducer(state = {}, action) {
