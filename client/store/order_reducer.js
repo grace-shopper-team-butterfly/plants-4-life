@@ -71,20 +71,19 @@ export const addProductToCart = (product, history) => {
           
             cart[index].bookOrder = {
               quantity: cart[index].bookOrder.quantity + 1,
-              subTotal: (cart[index].bookOrder.quantity + 1 )* cart[index].price,
-              id: cart[index].id
+              subTotal: (cart[index].bookOrder.quantity + 1 )* cart[index].price
             }
         
             localStorage.setItem('cart', JSON.stringify(cart))
           }
           else { 
-            product.bookOrder={quantity : 1, subTotal: product.price, id: product.id}
+            product.bookOrder={quantity : 1, subTotal: product.price}
             cart.push(product)
           localStorage.setItem('cart', JSON.stringify(cart))
           }
         }
         else{ 
-          product.bookOrder={quantity : 1, subTotal: product.price, id: product.id}
+          product.bookOrder={quantity : 1, subTotal: product.price}
           localStorage.setItem('cart', JSON.stringify([product]))}
       }
       history.push('/cart')
@@ -113,8 +112,7 @@ export const modifyProductInCart = (product, quantity, history) => {
           {if(item.id === product.id){
             return {...item, bookOrder: {
             quantity: quantity,
-            subTotal: quantity * item.price,
-            id: item.id
+            subTotal: quantity * item.price
           }}
         }
         else return item
