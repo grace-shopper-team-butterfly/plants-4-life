@@ -118,7 +118,6 @@ export const modifyProductInCart = (product, quantity, history) => {
         else return item
         }
           )
-          console.log('updatecart', updatedCart)
           localStorage.setItem('cart', JSON.stringify(updatedCart))
           dispatch(modifyProduct(updatedCart))
       }
@@ -163,7 +162,7 @@ export const removeProductCart = (product) => {
     const updatedCart = cart.filter(item => item.id !== product.id)
     localStorage.setItem('cart', JSON.stringify(updatedCart))
     dispatch(removeProductFromCart(updatedCart))
-    history.push('/products')
+    history.push('/cart')
   }
 }
 }
