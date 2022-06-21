@@ -50,7 +50,7 @@ export const fetchCart = () => {
         0)
         dispatch(setOrder({books: cart, purchaseTotal }))}
       }
-    } 
+    }
   }
 
 
@@ -68,21 +68,21 @@ export const addProductToCart = (product, history) => {
           const cartWithProduct = cart.filter(item => item.id === product.id)
           if (cartWithProduct[0]){
             let index = cart.indexOf(cartWithProduct[0])
-          
+
             cart[index].bookOrder = {
               quantity: cart[index].bookOrder.quantity + 1,
               subTotal: (cart[index].bookOrder.quantity + 1 )* cart[index].price
             }
-        
+
             localStorage.setItem('cart', JSON.stringify(cart))
           }
-          else { 
+          else {
             product.bookOrder={quantity : 1, subTotal: product.price}
             cart.push(product)
           localStorage.setItem('cart', JSON.stringify(cart))
           }
         }
-        else{ 
+        else{
           product.bookOrder={quantity : 1, subTotal: product.price}
           localStorage.setItem('cart', JSON.stringify([product]))}
       }
@@ -108,7 +108,7 @@ export const modifyProductInCart = (product, quantity, history) => {
       else {
         const jsonValue = localStorage.getItem('cart')
         const cart = JSON.parse(jsonValue)
-        const updatedCart = cart.map(item => 
+        const updatedCart = cart.map(item =>
           {if(item.id === product.id){
             return {...item, bookOrder: {
             quantity: quantity,
@@ -139,7 +139,7 @@ export const sendCartCheckout = (cart, history) => {
         }
       })
       dispatch(checkoutCart(data))
-      history.push('/home')
+      history.push('/thankyou')
       }
       else {
         const jsonValue = localStorage.getItem('cart')
@@ -149,7 +149,7 @@ export const sendCartCheckout = (cart, history) => {
         await axios.post('/api/orders/guestCheckout', {cart: cart, purchaseTotal: purchaseTotal})
         localStorage.setItem('cart', JSON.stringify([]))
         dispatch(checkoutCart({}))
-        history.push('/home')
+        history.push('/thankyou')
       }
     } catch (error) {
       console.log(error)
