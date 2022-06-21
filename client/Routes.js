@@ -13,6 +13,7 @@ import AdminAddBooks from './components/AdminAddBooks'
 import AdminAllProducts from './components/AdminAllProducts'
 import AdminUpdateBooks from './components/AdminUpdateBooks'
 import OrderHistory from './components/OrderHistory';
+import Homepage from './components/Homepage'
 
 
 /**
@@ -30,12 +31,12 @@ class Routes extends Component {
       <div>
         {isLoggedIn ? (
           <Switch>
-            <Route exact path='/forms/add'component={AdminAddBooks} />
-            <Route exact path='/products/:id/forms/edit'component={AdminUpdateBooks} />
+            <Route exact path='/forms/add' component={AdminAddBooks} />
+            <Route exact path='/products/:id/forms/edit' component={AdminUpdateBooks} />
             <Route exact path='/products/adminproducts' component={AdminAllProducts} />
             <Route exact path='/products/:productId(\d+)' component={SingleProduct} />
             <Route exact path="/products" component={AllProducts} />
-            <Route exact path='/orderHistory' component={OrderHistory}/>
+            <Route exact path='/orderHistory' component={OrderHistory} />
             <Route exact path="/home" component={Home} />
             <Route exact path='/users' component={AllUsers} />
             <Route exact path='/cart' component={Cart} />
@@ -49,6 +50,7 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path='/cart' component={Cart} />
+            <Route path='/homepage' component={Homepage} />
           </Switch>
         )}
       </div>

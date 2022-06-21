@@ -1,13 +1,13 @@
 /* global describe beforeEach it */
 
-import {expect} from 'chai'
+import { expect } from 'chai'
 import React from 'react'
-import enzyme, {shallow} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+import enzyme, { shallow } from 'enzyme'
 import { Home } from './Home'
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 const adapter = new Adapter()
-enzyme.configure({adapter})
+enzyme.configure({ adapter })
 
 describe('Home', () => {
   let home
