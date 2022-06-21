@@ -38,6 +38,9 @@ export class AllUsers extends React.Component {
     return (
       <div>
         <h2>All Users</h2>
+        <Link to='/adminPage'>
+          <Button variant="contained" color="secondary" sx={{ m: 2 }}>Back to Admin Page</Button>
+        </Link>
         <Grid item md={9} xs={12}>
           <TableContainer component={Paper}></TableContainer>
           <Table sx={{ minWidth: 500, maxWidth: 600 }} size='medium'>
