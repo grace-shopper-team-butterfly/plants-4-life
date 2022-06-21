@@ -29,7 +29,7 @@ function Navbar({ handleClick, isLoggedIn, username, isAdmin }) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            href='/homepage'
+            href='/home'
           >
             {/* <MenuIcon /> */}
             <img src='android-chrome-512x512.png' style={{ maxHeight: '40px' }} />
