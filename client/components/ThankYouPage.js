@@ -7,7 +7,7 @@ const ThankYou = () => {
     <div>
       <img src="Thankyou.jpg" className="center"/>
       <Box textAlign='center'>
-      <Link to={'/homepage'}><Button variant="contained" color="secondary" sx={{ m: 2 }}>Home</Button></Link>
+      <Link to={'/home'}><Button variant="contained" color="secondary" sx={{ m: 2 }}>Home</Button></Link>
       <Link to={'/products'}><Button variant="contained" color="secondary" sx={{ m: 2 }}>Countinue Shopping</Button></Link>
       </Box>
     </div>

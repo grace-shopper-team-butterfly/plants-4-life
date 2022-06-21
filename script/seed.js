@@ -115,31 +115,42 @@ async function seed() {
 
   const [cody, murphy, john, sophie, chris, angel, kim, phil, kathy] = users
   const [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10] = books
-  
 
+  const [order1, order2, order3, order4, order5, order6] = orders
 
   await order1.addBook(book1, { through: { quantity: 2, subTotal: 2 * book1.price } })
   await order1.addBook(book2, { through: { quantity: 1, subTotal: 1 * book2.price } })
   await order2.addBook(book3, { through: { quantity: 2, subTotal: 2 * book3.price } })
   await order3.addBook(book4, { through: { quantity: 2, subTotal: 2 * book4.price } })
-  await order4.addBook(book5, { through: { quantity: 2, subTotal: 2 * book5.price } })
+  await order4.addBook(book5, { through: { quantity: 6, subTotal: 2 * book5.price } })
   await order4.addBook(book6, { through: { quantity: 2, subTotal: 2 * book6.price } })
   await order5.addBook(book7, { through: { quantity: 1, subTotal: 1 * book7.price } })
   await order5.addBook(book8, { through: { quantity: 2, subTotal: 2 * book8.price } })
+  await order6.addBook(book8, { through: { quantity: 2, subTotal: 2 * book8.price } })
 
-  let [order1, order2, order3, order4, order5] = orders
+  await order1.update()
+  await order1.calculateTotal()
+  await order1.save()
 
-  orders.forEach(async function(order){
-    await order.update()
-    await order.calculateTotal()
-    await order.save()
-  })
+  await order2.update()
+  await order2.calculateTotal()
+  await order2.save()
 
-  // await order1.update()
-  // await order1.calculateTotal()
-  // await order1.save()
+  await order3.update()
+  await order3.calculateTotal()
+  await order3.save()
 
+  await order4.update()
+  await order4.calculateTotal()
+  await order4.save()
 
+  await order5.update()
+  await order5.calculateTotal()
+  await order5.save()
+
+  await order6.update()
+  await order6.calculateTotal()
+  await order6.save()
 }
 
 /*
