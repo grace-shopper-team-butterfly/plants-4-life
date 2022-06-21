@@ -22,14 +22,23 @@ form div {
   display: inline-block;
 }
 
-.boy-with-book {
+.child-with-book {
   background-size: cover;
   height: 400px;
-  padding: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
 }
 
-.books {
+.boys-book {
   background-color: #dce2cb;
   display: inline-flex;
   align-items: center;
+  padding: 30px;
+}
+
+.girls-book {
+  background-color: #e0bd97;
+  display: inline-flex;
+  align-items: center;
+  padding: 30px;
 }
