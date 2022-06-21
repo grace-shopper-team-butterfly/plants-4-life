@@ -18,7 +18,7 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Paper
+  Paper,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
@@ -29,7 +29,8 @@ class Cart extends React.Component {
   constructor() {
     super()
     this.state = {
-      quantity: 1
+      quantity: 1,
+      open: false
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -46,10 +47,16 @@ class Cart extends React.Component {
     })
   }
 
+  handleClickOpen(){
+   this.setState({
+    open:true
+   })
+  }
+
   render() {
-    const { quantity } = this.state
+    const { quantity, open } = this.state
     const { books } = this.props.cart
-    const { handleChange } = this
+    const { handleChange, handleClickOpen } = this
     return (
       <div>
 
@@ -110,7 +117,7 @@ class Cart extends React.Component {
                     </TableRow>
                     <TableRow align="center">
                       <TableCell>
-                        <Button onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</Button>
+                        <Button disabled={books && !books[0]} onClick={() => this.props.sendCartCheckout(this.props.cart)}>Checkout</Button>
                       </TableCell>
                     </TableRow>
                     <TableRow align="center">

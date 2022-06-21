@@ -14,7 +14,7 @@ import AdminAllProducts from './components/AdminAllProducts'
 import AdminUpdateBooks from './components/AdminUpdateBooks'
 import OrderHistory from './components/OrderHistory';
 import Homepage from './components/Homepage'
-
+import ThankYou from './components/ThankYouPage';
 
 /**
  * COMPONENT
@@ -51,6 +51,7 @@ class Routes extends Component {
             <Route path="/signup" component={Signup} />
             <Route path='/cart' component={Cart} />
             <Route path='/homepage' component={Homepage} />
+            <Route path='/thankyou' component={ThankYou} />
           </Switch>
         )}
       </div>
