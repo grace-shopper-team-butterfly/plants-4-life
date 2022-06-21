@@ -9,11 +9,11 @@ const initialState = {
   author: '',
   imageUrl: '',
   price: 0,
-  discription:''
+  discription: ''
 }
 
 export class AdminUpdateBooks extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = initialState
     this.id = this.props.match.params.id
@@ -21,20 +21,20 @@ export class AdminUpdateBooks extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  async componentDidMount(){
+  async componentDidMount() {
     await this.props.getProduct(this.id)
     this.setState(this.props.product)
   }
 
-  handleChange(event){
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault()
-    this.props.eiditProduct({...this.state})
+    this.props.editProduct({ ...this.state })
   }
 
   render() {
@@ -43,10 +43,10 @@ export class AdminUpdateBooks extends React.Component {
       author,
       imageUrl,
       price,
-      discription
+      description
     } = this.state
 
-    return(
+    return (
       <div id="edit-product">
         <h2>Edit Product</h2>
         <form id="edit-product-form" onSubmit={this.handleSubmit}>
@@ -58,8 +58,8 @@ export class AdminUpdateBooks extends React.Component {
           <input onChange={this.handleChange} name="imageUrl" value={imageUrl} />
           <label htmlFor="price">Price:</label>
           <input onChange={this.handleChange} name="price" value={price} />
-          <label htmlFor="discription">Description: </label>
-          <textarea onChange={this.handleChange} name="discription" value={discription} />
+          <label htmlFor="description">Description: </label>
+          <textarea onChange={this.handleChange} name="description" value={description} />
           <Button variant="contained" color="secondary" type="submit">Submit</Button>
 
         </form>
@@ -69,15 +69,15 @@ export class AdminUpdateBooks extends React.Component {
 }
 
 const mapState = (state) => {
-  return{
+  return {
     product: state.singleProduct
   }
 }
 
-const mapDispatch = (dispatch, {history}) => {
-  return{
+const mapDispatch = (dispatch, { history }) => {
+  return {
     getProduct: id => dispatch(fetchOneProduct(id)),
-    eiditProduct: product =>dispatch(updateProductThunk(product,history))
+    editProduct: product => dispatch(updateProductThunk(product, history))
   }
 }
 

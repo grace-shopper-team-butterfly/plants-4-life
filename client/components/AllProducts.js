@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProducts } from '../store/books_reducer';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -25,70 +25,70 @@ import { spacing } from '@mui/system';
 
 
 export class AllProducts extends React.Component {
-    constructor(){
-      super()
-      this.state = {
-      }
+  constructor() {
+    super()
+    this.state = {
     }
+  }
 
-    componentDidMount() {
-        this.props.fetchProducts()
-    }
+  componentDidMount() {
+    this.props.fetchProducts()
+  }
 
-    render() {
-        const products = this.props.products
-        return (
-            <Container >
-            <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{my: 10}}>
-                {/* <h1>Books</h1> */}
-                
-                {products.length ? products.map(product => {
-                    return (
-                        <Link to={`/products/${product.id}`} key= {product.id} justify-content="space-between">
-                        <Grid  item key={product.id} xs={12} >
-                        <Card sx={{ maxWidth: 345, minWidth: 345}} display='block'>
-                          <CardHeader
-                            avatar={
-                              <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
-                                <MenuBookOutlinedIcon/>
-                              </Avatar>
-                            }
-                          />
-                          <CardMedia
-                            component="img"
-                            height="300"
-                            maxWidth="300"
-                            object-fit= 'cover' 
-                            image={product.imageUrl}
-                          />
-                          <CardContent>
-                          <Typography variant="h6" color="text.secondary">
-                              {product.title}
-                            </Typography>
-                            <Typography variant="p" color="text.secondary">
-                              {product.author}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                              Price: ${product.price / 100}
-                            </Typography>
-                          </CardContent>
-                          <CardActions disableSpacing>
-                            <IconButton aria-label="share">
-                              <ShoppingCartIcon/>
-                            </IconButton>
-                            </CardActions>
-                        </Card>
-                                          
-                       </Grid>
-                       </Link>
-                   )
-               }) : ''}
-               </Grid>
-               </Container>
-                          
-            
-        )
-    }
+  render() {
+    const products = this.props.products
+    return (
+      <Container >
+        <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{ my: 10 }}>
+          {/* <h1>Books</h1> */}
+
+          {products.length ? products.map(product => {
+            return (
+              <Link to={`/products/${product.id}`} key={product.id} justify-content="space-between">
+                <Grid item key={product.id} xs={12} >
+                  <Card sx={{ maxWidth: 345, minWidth: 345 }} display='block'>
+                    <CardHeader
+                      avatar={
+                        <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
+                          <MenuBookOutlinedIcon />
+                        </Avatar>
+                      }
+                    />
+                    <CardMedia
+                      component="img"
+                      height="300"
+                      maxwidth="300"
+                      object-fit='cover'
+                      image={product.imageUrl}
+                    />
+                    <CardContent>
+                      <Typography variant="h6" color="text.secondary">
+                        {product.title}
+                      </Typography>
+                      <Typography variant="p" color="text.secondary">
+                        {product.author}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        Price: ${product.price / 100}
+                      </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing>
+                      <IconButton aria-label="share">
+                        <ShoppingCartIcon />
+                      </IconButton>
+                    </CardActions>
+                  </Card>
+
+                </Grid>
+              </Link>
+            )
+          }) : ''}
+        </Grid>
+      </Container>
+
+
+    )
+  }
 }
 
 
@@ -96,15 +96,15 @@ export class AllProducts extends React.Component {
 
 
 const mapStateToProps = (state) => {
-    return {
-      products: state.products
-    };
+  return {
+    products: state.products
   };
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      fetchProducts : () => dispatch(fetchProducts()),
-    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProducts: () => dispatch(fetchProducts()),
   };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(AllProducts);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllProducts);

@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const { models: { User, Book, Order, BookOrder } } = require('../db')
+const { requireToken, isAdmin } = require('./gatekeeping')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -20,13 +21,10 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', requireToken, isAdmin, async (req, res, next) => {
   try {
-    const user =  await User.findByToken(req.headers.authorization)
-    if (user.isAdmin){
     const book = await Book.create(req.body)
     res.json(book)
-    }
   } catch (err) {
     next(err)
   }
@@ -41,7 +39,7 @@ router.put('/addCart/:bookId', async (req, res, next) => {
 
     // Finding or creating a cart (isFulfilled: false)
     let [cart, created] = await Order.findOrCreate({ where: { userId: user.id, isFulfilled: false }, include: [{ model: Book, as: 'books' }] })
-    
+
     // Adding the book to the cart
 
     if (await cart.hasBook(book.id)) {
@@ -62,28 +60,22 @@ router.put('/addCart/:bookId', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
-    const user =  await User.findByToken(req.headers.authorization)
-    if (user.isAdmin){
     const book = await Book.findByPk(req.params.id)
     await book.update(req.body)
+    await book.save()
     res.json(book)
-    }
   } catch (err) {
     next(err)
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', requireToken, isAdmin, async (req, res, next) => {
   try {
-    const user =  await User.findByToken(req.headers.authorization)
-    if (user.isAdmin){
-      const book = await Book.findByPk(req.params.id)
-      await book.destroy()
-      res.send(book)
-    }
-
+    const book = await Book.findByPk(req.params.id)
+    await book.destroy()
+    res.send(book)
   } catch (error) {
     next(error)
   }
