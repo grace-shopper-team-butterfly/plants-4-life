@@ -22,3 +22,14 @@ form div {
   display: inline-block;
 }
 
+.boy-with-book {
+  background-size: cover;
+  height: 400px;
+  padding: 30px;
+}
+
+.books {
+  background-color: #dce2cb;
+  display: inline-flex;
+  align-items: center;
+}

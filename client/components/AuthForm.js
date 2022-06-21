@@ -13,14 +13,14 @@ const AuthForm = props => {
     <div>
       <form noValidate autoComplete="off" onSubmit={handleSubmit} name={name}>
         {props.name === 'signup' ? <div>
-        <TextField label="Email" name='email' variant="outlined" color='secondary' required/>
+          <TextField label="Email" name='email' variant="outlined" color='secondary' required />
         </div> : ''}
 
         <div>
-          <TextField label="UserName" name='username' variant="outlined" color='secondary' required/>
+          <TextField label="UserName" name='username' variant="outlined" color='secondary' required />
         </div>
         <div>
-          <TextField label="Password"  name="password" variant="outlined" color='secondary' required/>
+          <TextField label="Password" type='password' name="password" variant="outlined" color='secondary' required />
         </div>
         <div>
           <Button variant='contained' color='secondary' type="submit">{displayName}</Button>
