@@ -107,7 +107,7 @@ function Navbar({ handleClick, isLoggedIn, username, isAdmin }) {
                       <ListItemIcon>
                         <Logout fontSize="small" />
                       </ListItemIcon>
-                      <Link to='/products' style={{ textDecoration: 'none' }}>
+                      <Link to='/login' style={{ textDecoration: 'none' }}>
                         Logout
                       </Link>
                     </MenuItem>

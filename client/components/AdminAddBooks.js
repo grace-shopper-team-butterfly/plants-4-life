@@ -2,32 +2,33 @@ import React from "react";
 import { connect } from 'react-redux'
 import { addProductThunk } from "../store/books_reducer";
 import { Button } from "@mui/material";
+import { Link } from 'react-router-dom'
 
 const initialState = {
   title: '',
   author: '',
   imageUrl: '',
   price: 0,
-  discription:''
+  discription: ''
 }
 
 export class AdminAddBooks extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = initialState
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(event){
+  handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit(event){
+  handleSubmit(event) {
     event.preventDefault()
-    this.props.addProduct({...this.state})
+    this.props.addProduct({ ...this.state })
     this.setState(initialState)
 
   }
@@ -41,9 +42,12 @@ export class AdminAddBooks extends React.Component {
       discription
     } = this.state
 
-    return(
+    return (
       <div id='add-product'>
         <h2>Add New Product</h2>
+        <Link to='/adminPage'>
+          <Button variant="contained" color="secondary" sx={{ m: 2 }}>Back to Admin Page</Button>
+        </Link>
         <form id="add-product-form" onSubmit={this.handleSubmit}>
           <label htmlFor="title">Title:</label>
           <input onChange={this.handleChange} name="title" value={title} />
@@ -69,8 +73,8 @@ const mapState = (state) => ({
 })
 
 
-const mapDispatch = (dispatch, {history}) => {
-  return{
+const mapDispatch = (dispatch, { history }) => {
+  return {
     addProduct: newProduct => dispatch(addProductThunk(newProduct, history))
   }
 }
