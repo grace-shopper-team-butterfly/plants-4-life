@@ -47,13 +47,13 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route path='/products/:productId(\d+)' component={SingleProduct} />
-            <Route path="/products" component={AllProducts} />
-            <Route path='/' exact component={Login} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path='/cart' component={Cart} />
-            <Route path='/thankyou' component={ThankYou} />
+            <Route exact path='/products/:productId(\d+)' component={SingleProduct} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route exact path='/' component={Login} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path='/cart' component={Cart} />
+            <Route exact path='/thankyou' component={ThankYou} />
             <Route path='/home' component={Homepage} />
 
           </Switch>
