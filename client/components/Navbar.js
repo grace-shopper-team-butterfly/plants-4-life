@@ -3,12 +3,10 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, Menu, MenuItem, Divider } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Logout from '@mui/icons-material/Logout';
 
 function Navbar({ handleClick, isLoggedIn, username, isAdmin }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,29 +29,16 @@ function Navbar({ handleClick, isLoggedIn, username, isAdmin }) {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            href='/home'
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <img src='android-chrome-512x512.png' style={{ maxHeight: '40px' }} />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Story Time
           </Typography>
 
-          <div>
-            {isLoggedIn ? (
-              <div>
-                {/* The navbar will show these links after you log in */}
-                <Link to="/home"><Button color="inherit" startIcon={< HomeIcon />} size='large'>Home</Button></Link>
-                <Link to='/products'><Button color="inherit" startIcon={< MenuBookIcon />}>Products</Button></Link>
-              </div>
-            ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <Button color="inherit"><Link to="/login">Login</Link></Button>
-                <Button color="inherit"><Link to="/signup">Sign Up</Link></Button>
-                <Button color="inherit"><Link to='/products'>Products</Link></Button>
-              </div>
-            )}
-          </div>
+          <Button color="inherit"><Link to='/products'>Products</Link></Button>
           <div>
             <div>
               <IconButton
@@ -97,22 +82,31 @@ function Navbar({ handleClick, isLoggedIn, username, isAdmin }) {
                     {/* Add Order history to drop down */}
                     {isAdmin ?
                       <div>
-                        <MenuItem onClick={handleClick}>
-                          Admin Profile
+                        <MenuItem onClick={handleClose}>
+                          <Link to="/adminPage">
+                            Admin Settings
+                          </Link>
                         </MenuItem>
                         <Divider />
                       </div>
                       :
                       ''}
-                    <MenuItem onClick={handleClick}>
-                      Order History
+                    <MenuItem onClick={handleClose}>
+                      <Link to='/orderHistory' style={{ textDecoration: 'none' }}>
+                        Order History
+                      </Link>
                     </MenuItem>
                     {/* Add Profile to view email and username */}
-                    <MenuItem onClick={handleClick}>
-                      Profile
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/profile" style={{ textDecoration: 'none' }}>
+                        Profile
+                      </Link>
                     </MenuItem>
                     <Divider />
                     <MenuItem onClick={handleClick}>
+                      <ListItemIcon>
+                        <Logout fontSize="small" />
+                      </ListItemIcon>
                       <Link to='/products' style={{ textDecoration: 'none' }}>
                         Logout
                       </Link>
@@ -137,8 +131,8 @@ function Navbar({ handleClick, isLoggedIn, username, isAdmin }) {
           </div>
 
         </Toolbar>
-      </AppBar>
-    </Box>
+      </AppBar >
+    </Box >
   )
 }
 

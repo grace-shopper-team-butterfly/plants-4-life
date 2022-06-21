@@ -1,22 +1,21 @@
 const User = require("../db/models/User")
 
 const requireToken = async (req, res, next) => {
-  try{
-    console.log(req.headers)
+  try {
     const token = req.headers.authorization
 
     const user = await User.findByToken(token)
     req.user = user
     next()
-  }catch(err) {
+  } catch (err) {
     next(err)
   }
 }
 
 const isAdmin = (req, res, next) => {
-  if(!req.user.isAdmin){
+  if (!req.user.isAdmin) {
     return res.status(403).send('You shall not pass!')
-  }else{
+  } else {
     next()
   }
 }
