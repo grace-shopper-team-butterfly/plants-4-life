@@ -39,13 +39,13 @@ export class AllProducts extends React.Component {
     const products = this.props.products
     return (
       <Container >
-        <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{ my: 10 }}>
+        <Grid container justify='center' justifyContent='space-around' spacing={5} sx={{ my: 8 }}>
           {/* <h1>Books</h1> */}
 
           {products.length ? products.map(product => {
             return (
               <Link to={`/products/${product.id}`} key={product.id} justify-content="space-between">
-                <Grid item key={product.id} xs={12} >
+                <Grid item key={product.id} xs={12} sx={{ my: 2 }}>
                   <Card sx={{ maxWidth: 345, minWidth: 345 }} display='block'>
                     <CardHeader
                       avatar={

@@ -21,6 +21,12 @@ const theme = createTheme({
     fontWeightRegular: 500,
     fontWeightMedium: 600,
     fontWeightBold: 700
+  },
+  spacing: 8,
+  Media: {
+    height: '100%',
+    width: '100%',
+    objectFit: 'cover'
   }
 }})
 
