@@ -9,7 +9,7 @@ router.put('/checkout/:id', async (req, res, next) => {
     let cart = await Order.findOne({ where: { userId: user.id, isFulfilled: false }, include: [{ model: Book, as: 'books' }] })
 
     // Setting cart to fufilled order
-    await cart.update({ isFulfilled: true })
+    await cart.update({ isFulfilled: true, orderDate: new Date()  })
     await cart.calculateTotal()
     await cart.save()
 

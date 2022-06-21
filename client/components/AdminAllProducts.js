@@ -45,7 +45,7 @@ export class AdminAllProducts extends React.Component {
           {products.length ? products.map(product => {
             return (
               <Grid item key={product.id} xs={4} >
-                <Card sx={{ maxwidth: 345, minWidth: 345 }} display='block'>
+                <Card sx={{ maxWidth: 360, minWidth: 360, minHeight:570, maxHeight:570 }} display='block'>
                   <CardHeader
                     avatar={
                       <Avatar sx={{ bgcolor: blue[200] }} aria-label="recipe">
