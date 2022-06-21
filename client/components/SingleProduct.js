@@ -67,16 +67,16 @@ class SingleProduct extends React.Component {
           <Grid item>
             <Card sx={{ maxWidth: 600 }}>
               <CardContent >
-                <Typography variant="h4" color="text.secondary">
+                <Typography variant="h4" color="text.primary" sx={{ mb: 0.4 }}>
                   {product.title}
                 </Typography>
-                <Typography variant="h6" color="text.secondary">
+                <Typography variant="h6" color="text.secondary" sx={{ my: 0.4 }}>
                   {product.author}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color="text.secondary" sx={{ my: 0.4 }}>
                   Description: {product.description}
                 </Typography>
-                <Typography variant="h6" color="text.secondary">
+                <Typography variant="h6" color="text.secondary" sx={{ mt: 3 }}>
                   Price: ${product.price / 100}
                 </Typography>
               </CardContent>

@@ -13,7 +13,8 @@ const theme = createTheme({
     secondary: {
       light: '#0066ff',
       main: '#42a5f5',
-      contrastText: '#ffcc00',
+      contrastText: '#FFFFFF'
+      // '#ffcc00',
     },
   typography: {
     fontFamily: 'Quiksand',
@@ -26,7 +27,8 @@ const theme = createTheme({
   Media: {
     height: '100%',
     width: '100%',
-    objectFit: 'cover'
+    objectFit: 'cover',
+    backgroundSize: 'contain'
   }
 }})
 

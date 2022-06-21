@@ -23,7 +23,7 @@ const AuthForm = props => {
           <TextField label="Password" type='password' name="password" variant="outlined" color='secondary' required />
         </div>
         <div>
-          <Button variant='contained' color='secondary' type="submit">{displayName}</Button>
+          <Button variant='contained' color='secondary' type="submit" sx={{ mt: 7}}>{displayName}</Button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
