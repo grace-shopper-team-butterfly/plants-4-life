@@ -60,7 +60,8 @@ export class AdminUpdateBooks extends React.Component {
           <input onChange={this.handleChange} name="price" value={price} />
           <label htmlFor="description">Description: </label>
           <textarea onChange={this.handleChange} name="description" value={description} />
-          <Button variant="contained" color="secondary" type="submit">Submit</Button>
+          <br></br>
+          <Button variant="contained" color="secondary" type="submit" sx={{ mt: 2 }}>Submit</Button>
 
         </form>
       </div>
