@@ -115,10 +115,10 @@ async function seed() {
 
   const [cody, murphy, john, sophie, chris, angel, kim, phil, kathy] = users
   const [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10] = books
-  const [order1, order2, order3, order4, order5] = orders
+  let [order1, order2, order3, order4, order5] = orders
 
 
-  await order1.addBook(book1, { through: { quantity: 2, subTotal: 2 * book1.price } })
+  order1 = await order1.addBook(book1, { through: { quantity: 2, subTotal: 2 * book1.price } })
   await order1.addBook(book2, { through: { quantity: 1, subTotal: 1 * book2.price } })
   await order2.addBook(book3, { through: { quantity: 2, subTotal: 2 * book3.price } })
   await order3.addBook(book4, { through: { quantity: 2, subTotal: 2 * book4.price } })
@@ -127,10 +127,15 @@ async function seed() {
   await order5.addBook(book7, { through: { quantity: 1, subTotal: 1 * book7.price } })
   await order5.addBook(book8, { through: { quantity: 2, subTotal: 2 * book8.price } })
 
-  const total = (book1.price * 2) + (book2.price * 1)
-  order1.purchaseTotal = total
-  await order1.update()
-  await order1.save()
+  // const total = (book1.price * 2) + (book2.price * 1)
+  // order1.purchaseTotal = total
+  // await order1.update()
+  // await order1.save()
+  // console.log(await order1.getBooks())
+  // await order2.update()
+  await order1.calculateTotal()
+  // await order2.save()
+
 }
 
 /*

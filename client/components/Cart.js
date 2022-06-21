@@ -37,7 +37,7 @@ class Cart extends React.Component {
   }
 
   componentDidMount() {
-     this.props.fetchCart()
+    this.props.fetchCart()
   }
 
   handleChange(e) {
@@ -86,13 +86,13 @@ class Cart extends React.Component {
                         <TableCell>{book.title}</TableCell>
                         <TableCell align="center">
                           <ButtonGroup disableElevation variant="contained">
-                            <Button disabled={book.bookOrder.quantity === 1} onClick={() => {this.props.modifyProductInCart(book, book.bookOrder.quantity - 1), this.props.fetchCart()}}>-</Button>
+                            <Button disabled={book.bookOrder.quantity === 1} onClick={() => { this.props.modifyProductInCart(book, book.bookOrder.quantity - 1), this.props.fetchCart() }}>-</Button>
                             <Button >{book.bookOrder.quantity}</Button>
-                            <Button onClick={() => {this.props.modifyProductInCart(book, book.bookOrder.quantity + 1), this.props.fetchCart()}}>+</Button>
+                            <Button onClick={() => { this.props.modifyProductInCart(book, book.bookOrder.quantity + 1), this.props.fetchCart() }}>+</Button>
                           </ButtonGroup></TableCell>
                         <TableCell align="center">${book.bookOrder.subTotal / 100}</TableCell>
                         <TableCell align="center">
-                          <IconButton aria-label="delete" onClick={() => {this.props.removeProductCart(book), this.props.fetchCart()}}>
+                          <IconButton aria-label="delete" onClick={() => { this.props.removeProductCart(book), this.props.fetchCart() }}>
                             <DeleteIcon />
                           </IconButton>
                         </TableCell>

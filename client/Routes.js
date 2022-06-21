@@ -15,6 +15,7 @@ import AdminUpdateBooks from './components/AdminUpdateBooks'
 import OrderHistory from './components/OrderHistory';
 import Homepage from './components/Homepage'
 import ThankYou from './components/ThankYouPage';
+import Profile from './components/Profile'
 
 /**
  * COMPONENT
@@ -37,9 +38,11 @@ class Routes extends Component {
             <Route exact path='/products/:productId(\d+)' component={SingleProduct} />
             <Route exact path="/products" component={AllProducts} />
             <Route exact path='/orderHistory' component={OrderHistory} />
-            <Route exact path="/home" component={Home} />
+            <Route exact path="/adminPage" component={Home} />
+            <Route exact path="/profile" component={Profile} />
             <Route exact path='/users' component={AllUsers} />
             <Route exact path='/cart' component={Cart} />
+            <Route path='/home' component={Homepage} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -50,8 +53,9 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path='/cart' component={Cart} />
-            <Route path='/homepage' component={Homepage} />
             <Route path='/thankyou' component={ThankYou} />
+            <Route path='/home' component={Homepage} />
+
           </Switch>
         )}
       </div>
