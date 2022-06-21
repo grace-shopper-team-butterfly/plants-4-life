@@ -49,11 +49,11 @@ class Routes extends Component {
           <Switch>
             <Route path='/products/:productId(\d+)' component={SingleProduct} />
             <Route path="/products" component={AllProducts} />
-            <Route path='/' exact component={Login} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path='/cart' component={Cart} />
             <Route path='/home' component={Homepage} />
+            <Redirect to="/home" />
           </Switch>
         )}
       </div>
