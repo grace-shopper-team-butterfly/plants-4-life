@@ -14,8 +14,8 @@ import AdminAllProducts from './components/AdminAllProducts'
 import AdminUpdateBooks from './components/AdminUpdateBooks'
 import OrderHistory from './components/OrderHistory';
 import Homepage from './components/Homepage'
+import ThankYou from './components/ThankYouPage';
 import Profile from './components/Profile'
-
 
 /**
  * COMPONENT
@@ -47,13 +47,17 @@ class Routes extends Component {
           </Switch>
         ) : (
           <Switch>
-            <Route path='/products/:productId(\d+)' component={SingleProduct} />
-            <Route path="/products" component={AllProducts} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path='/cart' component={Cart} />
+
+            <Route exact path='/products/:productId(\d+)' component={SingleProduct} />
+            <Route exact path="/products" component={AllProducts} />
+            <Route exact path='/' component={Login} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path='/cart' component={Cart} />
+            <Route exact path='/thankyou' component={ThankYou} />
             <Route path='/home' component={Homepage} />
-            <Redirect to="/home" />
+
+
           </Switch>
         )}
       </div>

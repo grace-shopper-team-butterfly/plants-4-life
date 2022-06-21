@@ -115,8 +115,8 @@ async function seed() {
 
   const [cody, murphy, john, sophie, chris, angel, kim, phil, kathy] = users
   const [book1, book2, book3, book4, book5, book6, book7, book8, book9, book10] = books
-  const [order1, order2, order3, order4, order5, order6] = orders
 
+  const [order1, order2, order3, order4, order5, order6] = orders
 
   await order1.addBook(book1, { through: { quantity: 2, subTotal: 2 * book1.price } })
   await order1.addBook(book2, { through: { quantity: 1, subTotal: 1 * book2.price } })
