@@ -36,15 +36,16 @@ class OrderHistory extends React.Component {
 
     render(){
         const { orders } = this.props
+        console.log('orders', orders)
         let open = this.state.open
         return(
             <div>
-
-            <TableContainer component={Paper}>
+              <h2>Order History</h2>
+            <TableContainer component={Paper} sx={{ mt: 4 }}>
             <Table aria-label="collapsible table">
               <TableHead>
                 <TableRow>
-                  <TableCell />
+                  <TableCell>Order Details</TableCell>
                   <TableCell>Order Confirmation Number</TableCell>
                   <TableCell align="left">Order Date</TableCell>
                   <TableCell align="left">Order Purchase Total</TableCell>
@@ -53,7 +54,7 @@ class OrderHistory extends React.Component {
               </TableHead>
               <TableBody>
                 {orders.map((order, index) => (
-                //   <Row key={order.id} row={row} />
+               
                 
                     <React.Fragment>
                       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -80,19 +81,19 @@ class OrderHistory extends React.Component {
                               <Table size="small" aria-label="purchases">
                                 <TableHead>
                                   <TableRow>
-                                    <TableCell>Book Title</TableCell>
-                                    <TableCell>Book Cover</TableCell>
-                                    <TableCell align="right">Book Price</TableCell>
+                                    <TableCell align="left">Book Title</TableCell>
+                                    <TableCell align="left">Book Quantity</TableCell>
+                                    <TableCell align="left">Book Subtotal</TableCell>
                                   </TableRow>
                                 </TableHead>
                                 <TableBody>
                                   {orders[index].books.map((book) => (
                                     <TableRow key={book.id}>
-                                      <TableCell component="th" scope="row">
+                                      <TableCell component="th" scope="row"  align="left">
                                         {book.title}
                                       </TableCell>
-                                      <TableCell><img src={book.imageUrl}/></TableCell>
-                                      <TableCell align="right">${book.price / 100}</TableCell>
+                                      <TableCell  align="left">{book.bookOrder.quantity}</TableCell>
+                                      <TableCell align="left">${book.bookOrder.subTotal / 100}</TableCell>
                                     </TableRow>
                                   ))}
                                 </TableBody>
