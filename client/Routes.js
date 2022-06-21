@@ -14,8 +14,8 @@ import AdminAllProducts from './components/AdminAllProducts'
 import AdminUpdateBooks from './components/AdminUpdateBooks'
 import OrderHistory from './components/OrderHistory';
 import Homepage from './components/Homepage'
+import ThankYou from './components/ThankYouPage';
 import Profile from './components/Profile'
-
 
 /**
  * COMPONENT
@@ -53,7 +53,9 @@ class Routes extends Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path='/cart' component={Cart} />
+            <Route path='/thankyou' component={ThankYou} />
             <Route path='/home' component={Homepage} />
+
           </Switch>
         )}
       </div>
