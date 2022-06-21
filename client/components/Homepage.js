@@ -15,7 +15,7 @@ const Homepage = () => {
         <h1>
           “There is more treasure in books than in all the pirate’s loot on Treasure Island.” – Walt Disney
         </h1>
-        <img src='ReadABook.png' className='child-with-book' />
+        <img src='ReadABook.png' className='child-with-book girl' />
       </div>
     </div>
   )
